@@ -4,7 +4,7 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     public float rotationDuration = 1f; // Time to complete rotation
-   // public float interval = 300f; // Time before next rotation
+   
 
     void Start()
     {
