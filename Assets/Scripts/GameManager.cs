@@ -13,10 +13,14 @@ public class GameManager : MonoBehaviour
     public Image image2;
     public Image image3;
     public Image image4;
+    public Image image5;
+    public Image image6;
+    public Image image7;
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
     private GameObject player;
+    private WaitForSeconds wait;
     bool isPlayer1=true;
     //public TextMeshProUGUI healthText;
 
@@ -35,19 +39,37 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   player=Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
-        
+        levelup();
+
         UpdateScoreUI();
         UpdateHealthUI();
     }
     private void Update()
     {
+        
         if (score > 33&&isPlayer1) { 
             Destroy(player);
             player=Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
+            
+
 
         }
         player.transform.position = playerSpawn.position;
+
+        if (score > 33 && score <= 66)
+        {
+            image6.gameObject.SetActive(true);
+
+            image5.gameObject.SetActive(false);
+        }
+        if (score > 66)
+        {
+            levelup();
+        }
+     
+
+
     }
     public void AddScore(int amount)
     {
@@ -92,4 +114,24 @@ public class GameManager : MonoBehaviour
     {
         return score;
     }
+    public void levelup()
+    {
+
+      
+        if (score > 66)
+        {
+            image7.gameObject.SetActive(true);
+
+            image6.gameObject.SetActive(false);
+        }
+        else
+        {
+            image5.gameObject.SetActive(true);
+
+            image6.gameObject.SetActive(false);
+            image7.gameObject.SetActive(false);
+        }
+
+    }
+
 }
