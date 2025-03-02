@@ -22,6 +22,7 @@ public class Shoot : MonoBehaviour
             Destroy(gameObject);
             Destroy(collision.gameObject);
             Destroy(explosion, 2);
+            GameManager.Instance.AddScore(1);
         }
     }
 }

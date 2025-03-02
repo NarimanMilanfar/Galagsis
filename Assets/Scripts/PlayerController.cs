@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Game Over!");
+            Destroy(collision.gameObject);
+            GameManager.Instance.DecreaseHealth(1);
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
