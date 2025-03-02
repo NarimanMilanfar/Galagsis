@@ -762,7 +762,7 @@ GameObject:
   - component: {fileID: 1099425659}
   m_Layer: 0
   m_Name: PlayerSpawn
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1806,9 +1806,11 @@ MonoBehaviour:
   focalPoint: {fileID: 1512444859}
   speed: 3000
   gameManager: {fileID: 1099425657}
-  bulletPrefab: {fileID: 925300276820465781, guid: 38eaff776b1f22144805800d51b653c7, type: 3}
+  bulletPrefab: {fileID: 6155913150228966039, guid: 0b9f106ba89c9dd4680cf2d24c8fe67d, type: 3}
   bulletSpawnRef: {fileID: 2115140634}
   shootForce: 9000
+  bulletoffset: 0
+  bulletoffset2: 0
 --- !u!54 &2017219227
 Rigidbody:
   m_ObjectHideFlags: 0
