@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Image image5;
     public Image image6;
     public Image image7;
+    public Image image8;
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
@@ -66,6 +67,10 @@ public class GameManager : MonoBehaviour
         if (score > 66)
         {
             levelup();
+        }
+        if (score >= 100)
+        {
+            image8.gameObject.SetActive(true);
         }
      
 

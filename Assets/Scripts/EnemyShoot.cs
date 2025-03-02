@@ -23,5 +23,17 @@ public class EnemyShoot : MonoBehaviour
             Destroy(explosion, 2);
             GameManager.Instance.DecreaseHealth(10);
         }
+        if(collision.gameObject.tag == "Bullet")
+        {
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            Destroy(explosion, 2);
+            GameManager.Instance.AddScore(1);
+        }
+        if(collision.gameObject.tag== "Obstacle")
+        {
+            Destroy(gameObject);
+        }
     }
 }
