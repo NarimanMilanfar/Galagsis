@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
     public Image image2;
     public Image image3;
     public Image image4;
+    public GameObject player1;
+    public GameObject player2;
+    public Transform playerSpawn;
+    private GameObject player;
+    bool isPlayer1=true;
     //public TextMeshProUGUI healthText;
 
     void Awake()
@@ -29,11 +34,21 @@ public class GameManager : MonoBehaviour
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
+    {   player=Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
+        
         UpdateScoreUI();
         UpdateHealthUI();
     }
+    private void Update()
+    {
+        if (score > 33&&isPlayer1) { 
+            Destroy(player);
+            player=Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            isPlayer1 = false;
 
+        }
+        player.transform.position = playerSpawn.position;
+    }
     public void AddScore(int amount)
     {
         score += amount;
@@ -72,5 +87,9 @@ public class GameManager : MonoBehaviour
         {
             healthText.text = "Health: " + health+"%"; // Method to constantly update UI text
         }
+    }
+    public int GetScore()
+    {
+        return score;
     }
 }
