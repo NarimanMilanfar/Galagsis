@@ -6,8 +6,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private int score = 0;
-    private int health = 30;
+    private int health = 100;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI healthText;
     public Image image1;
     public Image image2;
     public Image image3;
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateScoreUI();
-        //UpdateHealthUI();
+        UpdateHealthUI();
     }
 
     public void AddScore(int amount)
@@ -41,12 +42,12 @@ public class GameManager : MonoBehaviour
     public void DecreaseHealth(int amount)
     {
         health -= amount;
-        //UpdateHealthUI();
-        if (health>=20 && health<30)
+        UpdateHealthUI();
+        if (health>=50 && health<75)
         {
             image1.gameObject.SetActive(false);
         }
-        else if (health>=10&&health<20)
+        else if (health>=25&&health<50)
         {
             image2.gameObject.SetActive(false);
         }
@@ -65,11 +66,11 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: " + score; // Method to constantly update UI text
         }
     }
-    //void UpdateHealthUI()
-    //{
-    //    if (healthText != null)
-    //    {
-    //        healthText.text = "Health: " + health; // Method to constantly update UI text
-    //    }
-    //}
+    void UpdateHealthUI()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "Health: " + health+"%"; // Method to constantly update UI text
+        }
+    }
 }

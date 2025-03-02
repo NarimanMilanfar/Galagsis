@@ -33,18 +33,18 @@ public class PlayerController : MonoBehaviour
         
         // Move the character left/right
         transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
-        horizontal = Input.GetAxis("Mouse X");
-        vertical = Input.GetAxis("Mouse Y");
+        //horizontal = Input.GetAxis("Mouse X");
+        //vertical = Input.GetAxis("Mouse Y");
 
-        if (Input.GetMouseButton(1)) //0 - Left Click , 1 - Right Click 2- middle click
-        {
-            // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
-            // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
-            player.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
-        }
-        if(Input.GetMouseButton(2)) {
-            transform.rotation = defaultRotation;
-        }
+        //if (Input.GetMouseButton(1)) //0 - Left Click , 1 - Right Click 2- middle click
+        //{
+        //    // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
+        //    // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
+        //    player.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
+        //}
+        //if(Input.GetMouseButton(2)) {
+        //    transform.rotation = defaultRotation;
+        //}
 
 
         if (Input.GetMouseButtonDown(0))
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-            GameManager.Instance.DecreaseHealth(1);
+            GameManager.Instance.DecreaseHealth(3);
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
