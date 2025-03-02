@@ -758,6 +758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017219225}
   - component: {fileID: 2017219226}
+  - component: {fileID: 2017219227}
   m_Layer: 0
   m_Name: SpawnEnemy
   m_TagString: Untagged
@@ -773,7 +774,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017219224}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -796,7 +797,36 @@ MonoBehaviour:
   enemyPrefab2: {fileID: 8059296547872205592, guid: 814db14525926644bb2e66f3dd5fc2cc, type: 3}
   enemyPrefab3: {fileID: 6084219493559540302, guid: 1268a93231d2094438a26883cae22edd, type: 3}
   spawnPoint: {fileID: 2017219225}
+  focalPoint: {fileID: 1512444859}
+  speed: 3000
   spawnInterval: 5
+--- !u!54 &2017219227
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017219224}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 64
+  m_CollisionDetection: 0
 --- !u!1001 &345817148380755161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -825,6 +855,14 @@ PrefabInstance:
       propertyPath: bulletSpawnRef
       value: 
       objectReference: {fileID: 1445494033}
+    - target: {fileID: 5015530399906790233, guid: 3d306ea164dba5d42978d265488fd85a, type: 3}
+      propertyPath: m_Constraints
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015530399906790233, guid: 3d306ea164dba5d42978d265488fd85a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8676807564312316586, guid: 3d306ea164dba5d42978d265488fd85a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
