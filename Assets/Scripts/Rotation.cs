@@ -4,7 +4,7 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     public float rotationDuration = 1f; // Time to complete rotation
-    public float interval = 5f; // Time before next rotation
+   // public float interval = 300f; // Time before next rotation
 
     void Start()
     {
@@ -15,7 +15,7 @@ public class Rotation : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(interval); // Wait before rotating
+            yield return new WaitForSeconds(30f); // Wait before rotating
 
             Quaternion startRotation = transform.rotation;
             Quaternion targetRotation = Quaternion.Euler(
