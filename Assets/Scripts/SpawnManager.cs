@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
         float randEnemy = Random.Range(0, 3);
         if (randEnemy == 0)
         {
-            GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+            GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x+ randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
            // Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, focalPoint.position, speed * Time.deltaTime);
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 5000);
         }
