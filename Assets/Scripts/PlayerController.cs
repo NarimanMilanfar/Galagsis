@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
     
     public Transform bulletSpawnRef;
-    public float shootForce = 90000f;
+    public float shootForce = 9000f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
