@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Transform focalPoint;
     public Quaternion defaultRotation;
     private Vector3 defaultPosition;
+    public GameObject explosionParticle;
 
     public float shootForce = 9000f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
             Destroy(collision.gameObject);
             GameManager.Instance.DecreaseHealth(3);
         }

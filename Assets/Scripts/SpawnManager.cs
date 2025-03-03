@@ -171,5 +171,26 @@ public class SpawnManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+            Destroy(explosion, 2);
+            GameManager.Instance.AddScore(1);
+        }
+        if (other.gameObject.tag == "Obstacle")
+        {
+            Destroy(gameObject);
+        }
+        if ((other.gameObject.tag == "Player"))
+        {
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+            Destroy(explosion, 2);
+            GameManager.Instance.DecreaseHealth(10);
+        }
+    }
 
 }
