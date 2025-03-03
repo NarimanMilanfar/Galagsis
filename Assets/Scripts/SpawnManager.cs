@@ -21,6 +21,7 @@ public class SpawnManager : MonoBehaviour
     public float bulletoffset;
     public float bulletoffset2;
     public float bulletoffset3;
+    public GameObject explosionParticle;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,8 +53,7 @@ public class SpawnManager : MonoBehaviour
         float randPositionX2 = Random.Range(spawnRandomRange, -spawnRandomRange);
         float randEnemy = Random.Range(0, 3);
         if (gameManager.GetScore() > 33) { randEnemy += 3; }
-        Debug.Log("rand"+randEnemy);
-        Debug.Log("score"+gameManager.GetScore());
+       
 
 
         if (randEnemy == 0)
@@ -149,11 +149,27 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.tag == "Player")
+        {
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+
+            Destroy(explosion, 2);
+            GameManager.Instance.DecreaseHealth(10);
+        }
+        if (collision.gameObject.tag == "Bullet")
+        {
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            Destroy(explosion, 2);
+            GameManager.Instance.AddScore(1);
+        }
+        if (collision.gameObject.tag == "Obstacle")
         {
             Destroy(gameObject);
         }
     }
+
 }

@@ -2046,6 +2046,7 @@ MonoBehaviour:
   bulletoffset: 0
   bulletoffset2: 0
   bulletoffset3: 0
+  explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
 --- !u!54 &2017219227
 Rigidbody:
   m_ObjectHideFlags: 0
