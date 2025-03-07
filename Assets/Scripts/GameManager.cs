@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
 
-    //below is for if/when I update the Game Over script
     private bool isGameOver = false;
 
     void Awake()
@@ -54,6 +53,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
         UpdateHealthUI();
 
+        //initialize the timer
         if (timerManager != null)
         {
             timerManager.InitializeTimer(this);
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        //I will uncomment this code later if/when I implement fixed game over
+        //This is how I stop the game from running once it ends
          if(isGameOver)
          {
             return;
@@ -100,16 +100,16 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore(int amount)
     {
-        //Uncomment when implementing game over fix
-        if(isGameOver) return;
+        //This is how I stop the game from running once it ends
+        if (isGameOver) return;
 
         score += amount;
         UpdateScoreUI();
     }
     public void DecreaseHealth(int amount)
     {
-        //Uncomment when implementing game over fix
-        if(isGameOver) return;
+        //This is how I stop the game from running once it ends
+        if (isGameOver) return;
 
         health -= amount;
         UpdateHealthUI();
@@ -123,10 +123,10 @@ public class GameManager : MonoBehaviour
         }
         else if (health <= 0)
         {
-            image3.gameObject.SetActive(false);
-            image4.gameObject.SetActive(true);
+            //image3.gameObject.SetActive(false);
+            //image4.gameObject.SetActive(true);
 
-            //Uncomment when implementing game over fix
+            //Changed this to use the GameOver method
             GameOver();
         }
 
@@ -150,6 +150,7 @@ public class GameManager : MonoBehaviour
     {
         if (timerText != null)
         {
+            //This is how I stop the game from running once it ends
             if (isGameOver)
             {
                 return;
@@ -166,10 +167,9 @@ public class GameManager : MonoBehaviour
     {
         return score;
     }
+
     public void levelup()
     {
-
-
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
 
     public void TimeUp()
     {
-        //commented out for different implementation
+        //ends the game
         isGameOver = true;
 
         Debug.Log("Time is Up!!");
