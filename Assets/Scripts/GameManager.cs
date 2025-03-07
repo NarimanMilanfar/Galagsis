@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
         {
             if (isGameOver)
             {
-                timerText.text = "Game Over";
+                return;
             }
             else
             {
