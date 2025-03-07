@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         //Uncomment when implementing game over fix
-        //if(isGameOver) return;
+        if(isGameOver) return;
 
         score += amount;
         UpdateScoreUI();
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     public void DecreaseHealth(int amount)
     {
         //Uncomment when implementing game over fix
-        //if(isGameOver) return;
+        if(isGameOver) return;
 
         health -= amount;
         UpdateHealthUI();
@@ -195,8 +195,6 @@ public class GameManager : MonoBehaviour
         image3.gameObject.SetActive(false);
         image4.gameObject.SetActive(true);
         timerText.text = "Time is Up!!";
-
-        //TODO: How to display time is up in the TMP
     }
 
     public void GameOver()
