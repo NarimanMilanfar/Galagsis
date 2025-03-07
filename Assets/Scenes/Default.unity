@@ -964,6 +964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b94b9334ba4030448319a458d29f3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerManager: {fileID: 636780909}
   scoreText: {fileID: 1781842243}
   healthText: {fileID: 263156570}
   timerText: {fileID: 1943460363}

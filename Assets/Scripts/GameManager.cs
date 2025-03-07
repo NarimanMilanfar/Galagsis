@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private TimerManager timerManager;
-    private int score = 0;
+    public TimerManager timerManager;
+    private int score = 99;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
@@ -54,9 +54,10 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
         UpdateHealthUI();
 
-        GameObject timerObj = new GameObject("TimerManager");
-        timerManager = timerObj.AddComponent<TimerManager>();
-        timerManager.InitializeTimer(this);
+        if (timerManager != null)
+        {
+            timerManager.InitializeTimer(this);
+        }
     }
     private void Update()
     {
