@@ -5,10 +5,13 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private TimerManager timerManager;
     private int score = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI timerText;
+
     public Image image1;
     public Image image2;
     public Image image3;
@@ -22,8 +25,10 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawn;
     private GameObject player;
     private WaitForSeconds wait;
-    bool isPlayer1=true;
-    //public TextMeshProUGUI healthText;
+    bool isPlayer1 = true;
+
+    //below is for if/when I update the Game Over script
+    //private bool isGameOver = false;
 
     void Awake()
     {
@@ -37,25 +42,35 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   player=Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
+    { player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
         UpdateScoreUI();
         UpdateHealthUI();
+
+        GameObject timerObj = new GameObject("TimerManager");
+        timerManager = timerObj.AddComponent<TimerManager>();
+        timerManager.InitializeTimer(this);
     }
     private void Update()
     {
-        
-        if (score > 33&&isPlayer1) { 
+        //I will uncomment this code later if/when I implement fixed game over
+        /*
+         * if(isGameOver)
+         * {
+         *      return
+         * }
+         */
+
+        if (score > 33 && isPlayer1) {
             Destroy(player);
-            player=Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-            
-
-
         }
+
         player.transform.position = playerSpawn.position;
 
         if (score > 33 && score <= 66)
@@ -64,41 +79,54 @@ public class GameManager : MonoBehaviour
 
             image5.gameObject.SetActive(false);
         }
+
         if (score > 66)
         {
             levelup();
         }
+
         if (score >= 100)
         {
             image8.gameObject.SetActive(true);
+            //change this to a GameWon method
+            //GameWon();
         }
-     
+
 
 
     }
     public void AddScore(int amount)
     {
+        //Uncomment when implementing game over fix
+        //if(isGameOver) return;
+
         score += amount;
         UpdateScoreUI();
     }
     public void DecreaseHealth(int amount)
     {
+        //Uncomment when implementing game over fix
+        //if(isGameOver) return;
+
         health -= amount;
         UpdateHealthUI();
-        if (health>=50 && health<75)
+        if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
         }
-        else if (health>=25&&health<50)
+        else if (health >= 25 && health < 50)
         {
             image2.gameObject.SetActive(false);
         }
-        else if (health<=0)
+        else if (health <= 0)
         {
             image3.gameObject.SetActive(false);
             image4.gameObject.SetActive(true);
+
+            //Uncomment when implementing game over fix
+            //GameOver();
         }
-        
+
     }
 
     void UpdateScoreUI()
@@ -112,7 +140,16 @@ public class GameManager : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + health+"%"; // Method to constantly update UI text
+            healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
+        }
+    }
+    public void UpdateTimerUI(float timeLeft)
+    {
+        if (timerText != null)
+        {
+            float minutes = Mathf.FloorToInt(timeLeft / 60);
+            float seconds = Mathf.FloorToInt(timeLeft % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
     public int GetScore()
@@ -122,7 +159,7 @@ public class GameManager : MonoBehaviour
     public void levelup()
     {
 
-      
+
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
@@ -139,4 +176,39 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void TimeUp()
+    {
+        //commented out for different implementation
+        //isGameOver = true;
+
+        Debug.Log("Time is Up!!");
+        timerManager.timerOn = false;
+        image3.gameObject.SetActive(false);
+        image4.gameObject.SetActive(true);
+        timerText.text = "Time is Up!!";
+
+        //TODO: How to display time is up in the TMP
+    }
+
+    //public void GameOver()
+    //{
+    //Uncomment when implementing game over fix
+    //if(GameOver) return;
+    //isGameOver = true;
+    //Debug.Log("Game Over");
+    //timerManager.timerOn = false;
+    //timerManager.timerTxt.text = "Game Over";
+    //timerManager.timeLeft = 0;
+    //}
+
+    //public void GameWon()
+    //{
+    //Uncomment when implementing game over fix
+    //isGameOver = true;
+    //Debug.Log("Game Won");
+    //timerManager.timerOn = false;
+    //timerManager.timerTxt.text = "Game Won";
+    //timerManager.timeLeft = 0;
+    //image8.gameObject.SetActive(true);
+    //}
 }
