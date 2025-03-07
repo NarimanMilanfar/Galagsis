@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public TimerManager timerManager;
-    private int score = 99;
+    private int score = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
