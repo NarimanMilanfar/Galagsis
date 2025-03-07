@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     public Image image1;
     public Image image2;
     public Image image3;
-    public Image image4;
+    public Image image4;    //Game Over Image
     public Image image5;
     public Image image6;
     public Image image7;
-    public Image image8;
+    public Image image8;    //Game Win Image
+
+
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
@@ -28,7 +30,7 @@ public class GameManager : MonoBehaviour
     bool isPlayer1 = true;
 
     //below is for if/when I update the Game Over script
-    //private bool isGameOver = false;
+    private bool isGameOver = false;
 
     void Awake()
     {
@@ -45,7 +47,8 @@ public class GameManager : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    { player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
+    { 
+        player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
         UpdateScoreUI();
@@ -58,12 +61,11 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //I will uncomment this code later if/when I implement fixed game over
-        /*
-         * if(isGameOver)
-         * {
-         *      return
-         * }
-         */
+         if(isGameOver)
+         {
+            return;
+         }
+         
 
         if (score > 33 && isPlayer1) {
             Destroy(player);
@@ -87,9 +89,9 @@ public class GameManager : MonoBehaviour
 
         if (score >= 100)
         {
-            image8.gameObject.SetActive(true);
+            //image8.gameObject.SetActive(true);
             //change this to a GameWon method
-            //GameWon();
+            GameWon();
         }
 
 
@@ -124,7 +126,7 @@ public class GameManager : MonoBehaviour
             image4.gameObject.SetActive(true);
 
             //Uncomment when implementing game over fix
-            //GameOver();
+            GameOver();
         }
 
     }
@@ -147,9 +149,16 @@ public class GameManager : MonoBehaviour
     {
         if (timerText != null)
         {
-            float minutes = Mathf.FloorToInt(timeLeft / 60);
-            float seconds = Mathf.FloorToInt(timeLeft % 60);
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            if (isGameOver)
+            {
+                timerText.text = "Game Over";
+            }
+            else
+            {
+                float minutes = Mathf.FloorToInt(timeLeft / 60);
+                float seconds = Mathf.FloorToInt(timeLeft % 60);
+                timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
         }
     }
     public int GetScore()
@@ -179,7 +188,7 @@ public class GameManager : MonoBehaviour
     public void TimeUp()
     {
         //commented out for different implementation
-        //isGameOver = true;
+        isGameOver = true;
 
         Debug.Log("Time is Up!!");
         timerManager.timerOn = false;
@@ -190,25 +199,24 @@ public class GameManager : MonoBehaviour
         //TODO: How to display time is up in the TMP
     }
 
-    //public void GameOver()
-    //{
-    //Uncomment when implementing game over fix
-    //if(GameOver) return;
-    //isGameOver = true;
-    //Debug.Log("Game Over");
-    //timerManager.timerOn = false;
-    //timerManager.timerTxt.text = "Game Over";
-    //timerManager.timeLeft = 0;
-    //}
+    public void GameOver()
+    {
+        //Uncomment when implementing game over fix
+        isGameOver = true;
+        Debug.Log("Game Over");
+        timerManager.timerOn = false;
+        timerText.text = "Game Over";
+        timerManager.timeLeft = 0;
+    }
 
-    //public void GameWon()
-    //{
-    //Uncomment when implementing game over fix
-    //isGameOver = true;
-    //Debug.Log("Game Won");
-    //timerManager.timerOn = false;
-    //timerManager.timerTxt.text = "Game Won";
-    //timerManager.timeLeft = 0;
-    //image8.gameObject.SetActive(true);
-    //}
+    public void GameWon()
+    {
+        //Uncomment when implementing game over fix
+        isGameOver = true;
+        Debug.Log("Game Won");
+        timerManager.timerOn = false;
+        timerText.text = "Game Won";
+        timerManager.timeLeft = 0;
+        image8.gameObject.SetActive(true);
+    }
 }
