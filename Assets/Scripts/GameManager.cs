@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
-    public Image healthBar;
     public Image image1;
     public Image image2;
     public Image image3;
@@ -128,25 +127,11 @@ public class GameManager : MonoBehaviour
         {
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
         }
-
-         healthBar.fillAmount = health / 100f;
     }
     public int GetScore()
     {
         return score;
     }
-
-    public int GetHealth()
-    {
-        return health;
-    }
-
-    public void SetHealth(int newHealth)
-    {
-        health = newHealth;
-        UpdateHealthUI();
-    }
-
     public void levelup()
     {
 
