@@ -88,11 +88,22 @@ public class GameManager : MonoBehaviour
         }
         if (score >= 100)
         {
-            // Win Game
+            // Avoid overlap status or images
+            if (image4.gameObject.activeSelf)
+            {
+                // do nothing (skip win cause already game over)
+                return;
+            }
+
+            // Win Image
             image8.gameObject.SetActive(true);
+
+            // Restart Button
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
             restartButton.gameObject.SetActive(true);
+
+            // Back To Main Menu Button
             backToMainMenuButton.gameObject.SetActive(true);
         }
 
@@ -118,13 +129,25 @@ public class GameManager : MonoBehaviour
         }
         else if (health <= 0)
         {
+            // Avoid overlap status or images
+            if (image8.gameObject.activeSelf)
+            {
+                // do nothing (skip game over cause already win)
+                return;
+            }
+
             image3.gameObject.SetActive(false);
-            // Game Over
+
+            // Game Over Image
+            image4.gameObject.SetActive(true);
+
+            // Restart Button
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
             restartButton.gameObject.SetActive(true);
+
+            // Back To Main Menu Button
             backToMainMenuButton.gameObject.SetActive(true);
-            image4.gameObject.SetActive(true);
         }
 
     }
