@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public TimerManager timerManager;
     private int score = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI timerText;
     public Image image1;
     public Image image2;
     public Image image3;
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
     public Image image5;
     public Image image6;
     public Image image7;
-    public Image image8;
+    public Image image8;    //Game Won Image
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     bool isPlayer1 = true;
     //public TextMeshProUGUI healthText;
 
+    public bool isGameOver = false;
     public Button restartButton;
 
     void Awake()
@@ -48,18 +51,27 @@ public class GameManager : MonoBehaviour
 
         UpdateScoreUI();
         UpdateHealthUI();
+
+        //initialize the timer
+        if(timerManager != null)
+        {
+            timerManager.InitializeTimer(this);
+        }
     }
     private void Update()
     {
+        //This is how I stop the game from running once it ends
+        //Just remove this line if you want to keep updating the game after it ends
+        if (isGameOver)
+         {
+            return;
+         }
+         
 
-        if (score > 33 && isPlayer1)
-        {
+        if (score > 33 && isPlayer1) {
             Destroy(player);
             player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-
-
-
         }
         player.transform.position = playerSpawn.position;
 
@@ -76,10 +88,8 @@ public class GameManager : MonoBehaviour
         if (score >= 100)
         {
             // Win Game
-            Cursor.visible = true;  // Show the cursor
-            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);   // restart button
-            image8.gameObject.SetActive(true);
+            //change this to a GameWon method
+            GameWon();
         }
 
 
@@ -87,13 +97,22 @@ public class GameManager : MonoBehaviour
     }
     public void AddScore(int amount)
     {
+        //This is how I stop the game from running once it ends
+        //Just remove this line if you want to keep adding score after the game ends
+        if (isGameOver) return;
+
         score += amount;
         UpdateScoreUI();
     }
     public void DecreaseHealth(int amount)
     {
+        //This is how I stop the game from running once it ends
+        //Just remove this line if you want to keep decreasing health after the game ends
+        if (isGameOver) return;
+
         health -= amount;
         UpdateHealthUI();
+       
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
@@ -106,10 +125,8 @@ public class GameManager : MonoBehaviour
         {
             image3.gameObject.SetActive(false);
             // Game Over
-            Cursor.visible = true;  // Show the cursor
-            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);   // restart button
-            image4.gameObject.SetActive(true);
+            //Changed this to use the GameOver method
+            GameOver();
         }
 
     }
@@ -126,6 +143,23 @@ public class GameManager : MonoBehaviour
         if (healthText != null)
         {
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
+        }
+    }
+    public void UpdateTimerUI(float timeLeft)
+    {
+        if (timerText != null)
+        {
+            //This is how I stop the game from running once it ends
+            if (isGameOver)
+            {
+                return;
+            }
+            else
+            {
+                float minutes = Mathf.FloorToInt(timeLeft / 60);
+                float seconds = Mathf.FloorToInt(timeLeft % 60);
+                timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
         }
     }
     public int GetScore()
@@ -157,6 +191,35 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;  // Show the cursor
         Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void GameOver()
+    {
+        //Moved Salma's code to this method 
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        restartButton.gameObject.SetActive(true);   // restart button
+
+        isGameOver = true;
+        Debug.Log("Game Over");
+        timerManager.timerOn = false;
+        timerText.text = "Game Over";
+        timerManager.timeLeft = 0;
+        image4.gameObject.SetActive(true);
+    }
+
+    public void GameWon()
+    {
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        restartButton.gameObject.SetActive(true);   // restart button
+
+        isGameOver = true;
+        Debug.Log("Game Won");
+        timerManager.timerOn = false;
+        timerText.text = "Game Won";
+        timerManager.timeLeft = 0;
+        image8.gameObject.SetActive(true);
     }
 
 
