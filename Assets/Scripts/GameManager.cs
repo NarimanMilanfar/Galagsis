@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public Image image1;
     public Image image2;
     public Image image3;
-    public Image image4;
+    public Image image4;    // Game Over Image
     public Image image5;
     public Image image6;
     public Image image7;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawn;
     private GameObject player;
     private WaitForSeconds wait;
-    bool isPlayer1=true;
+    bool isPlayer1 = true;
     //public TextMeshProUGUI healthText;
 
     void Awake()
@@ -39,7 +39,8 @@ public class GameManager : MonoBehaviour
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   player=Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
+    {
+        player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
         UpdateScoreUI();
@@ -47,12 +48,13 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        
-        if (score > 33&&isPlayer1) { 
+
+        if (score > 33 && isPlayer1)
+        {
             Destroy(player);
-            player=Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-            
+
 
 
         }
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour
         {
             image8.gameObject.SetActive(true);
         }
-     
+
 
 
     }
@@ -85,20 +87,21 @@ public class GameManager : MonoBehaviour
     {
         health -= amount;
         UpdateHealthUI();
-        if (health>=50 && health<75)
+        if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
         }
-        else if (health>=25&&health<50)
+        else if (health >= 25 && health < 50)
         {
             image2.gameObject.SetActive(false);
         }
-        else if (health<=0)
+        else if (health <= 0)
         {
             image3.gameObject.SetActive(false);
+            // Game Over
             image4.gameObject.SetActive(true);
         }
-        
+
     }
 
     void UpdateScoreUI()
@@ -112,7 +115,7 @@ public class GameManager : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + health+"%"; // Method to constantly update UI text
+            healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
         }
     }
     public int GetScore()
@@ -122,7 +125,7 @@ public class GameManager : MonoBehaviour
     public void levelup()
     {
 
-      
+
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
@@ -138,5 +141,6 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
 
 }
