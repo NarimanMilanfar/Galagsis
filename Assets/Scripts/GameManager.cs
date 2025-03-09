@@ -62,25 +62,25 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
         UpdateHealthUI();
 
- MainMenu
-
         //initialize the timer
-        if(timerManager != null)
+        if (timerManager != null)
         {
             timerManager.InitializeTimer(this);
         }
+    }
 
     private void Update()
     {
         //This is how I stop the game from running once it ends
         //Just remove this line if you want to keep updating the game after it ends
-        if (isGameOver)
-         {
-            return;
-         }
-         
+        // if (isGameOver)
+        // {
+        //     return;
+        // }
 
-        if (score > 33 && isPlayer1) {
+
+        if (score > 33 && isPlayer1)
+        {
             Destroy(player);
             player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
@@ -101,28 +101,12 @@ public class GameManager : MonoBehaviour
         }
         if (score >= 100)
         {
- MainMenu
-            // Avoid overlap status or images
-            if (image4.gameObject.activeSelf)
-            {
-                // do nothing (skip win cause already game over)
-                return;
-            }
-
-            // Win Image
-            image8.gameObject.SetActive(true);
-
-            // Restart Button
-            Cursor.visible = true;  // Show the cursor
-            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);
-
-            // Back To Main Menu Button
-            backToMainMenuButton.gameObject.SetActive(true);
 
             // Win Game
             //change this to a GameWon method
             GameWon();
+        }
+    }
 
     public void AddScore(int amount)
     {
@@ -141,7 +125,7 @@ public class GameManager : MonoBehaviour
 
         health -= amount;
         UpdateHealthUI();
-       
+
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
@@ -152,30 +136,13 @@ public class GameManager : MonoBehaviour
         }
         else if (health <= 0)
         {
-            // Avoid overlap status or images
-            if (image8.gameObject.activeSelf)
-            {
-                // do nothing (skip game over cause already win)
-                return;
-            }
-
-            image3.gameObject.SetActive(false);
- MainMenu
-
-            // Game Over Image
-            image4.gameObject.SetActive(true);
-
-            // Restart Button
-            Cursor.visible = true;  // Show the cursor
-            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);
-
-            // Back To Main Menu Button
-            backToMainMenuButton.gameObject.SetActive(true);
 
             // Game Over
             //Changed this to use the GameOver method
             GameOver();
+
+        }
+    }
 
 
     void UpdateScoreUI()
@@ -192,6 +159,7 @@ public class GameManager : MonoBehaviour
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
         }
     }
+
     public void UpdateTimerUI(float timeLeft)
     {
         if (timerText != null)
@@ -233,33 +201,63 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void RestartGame()
-    {
-        Cursor.visible = true;  // Show the cursor
-        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    // public void RestartGame()
+    // {
+    //     Cursor.visible = true;  // Show the cursor
+    //     Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    // }
 
     public void GameOver()
     {
         //Moved Salma's code to this method 
+        // Avoid overlap status or images
+        if (image8.gameObject.activeSelf)
+        {
+            // do nothing (skip game over cause already win)
+            return;
+        }
+
+        image3.gameObject.SetActive(false);
+
+        // Game Over Image
+        image4.gameObject.SetActive(true);
+
+        // Restart Button
         Cursor.visible = true;  // Show the cursor
         Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-        restartButton.gameObject.SetActive(true);   // restart button
+        restartButton.gameObject.SetActive(true);
+
+        // Back To Main Menu Button
+        backToMainMenuButton.gameObject.SetActive(true);
 
         isGameOver = true;
         Debug.Log("Game Over");
         timerManager.timerOn = false;
         timerText.text = "Game Over";
         timerManager.timeLeft = 0;
-        image4.gameObject.SetActive(true);
+
     }
 
     public void GameWon()
     {
+        // Avoid overlap status or images
+        if (image4.gameObject.activeSelf)
+        {
+            // do nothing (skip win cause already game over)
+            return;
+        }
+
+        // Win Image
+        image8.gameObject.SetActive(true);
+
+        // Restart Button
         Cursor.visible = true;  // Show the cursor
         Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-        restartButton.gameObject.SetActive(true);   // restart button
+        restartButton.gameObject.SetActive(true);
+
+        // Back To Main Menu Button
+        backToMainMenuButton.gameObject.SetActive(true);
 
         isGameOver = true;
         Debug.Log("Game Won");
@@ -271,3 +269,4 @@ public class GameManager : MonoBehaviour
 
 
 }
+
