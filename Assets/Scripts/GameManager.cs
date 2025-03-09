@@ -75,6 +75,10 @@ public class GameManager : MonoBehaviour
         }
         if (score >= 100)
         {
+            // Win Game
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+            restartButton.gameObject.SetActive(true);   // restart button
             image8.gameObject.SetActive(true);
         }
 
@@ -104,7 +108,7 @@ public class GameManager : MonoBehaviour
             // Game Over
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);
+            restartButton.gameObject.SetActive(true);   // restart button
             image4.gameObject.SetActive(true);
         }
 
