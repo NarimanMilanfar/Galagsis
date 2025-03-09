@@ -3,16 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    // Load a scene by name
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName) // Function must be public
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    // Exit the game
     public void ExitGame()
     {
         Debug.Log("Exiting Game...");
-        Application.Quit(); // This will close the game when built
+
+        // Quit the game when built
+        Application.Quit();
+
+        // Stop play mode in Unity Editor (only works inside Unity Editor)
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
+
 }

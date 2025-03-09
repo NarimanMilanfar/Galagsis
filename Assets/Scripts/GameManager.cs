@@ -46,8 +46,18 @@ public class GameManager : MonoBehaviour
         player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
+        if (SceneManager.GetActiveScene().name == "Level2")
+        {
+            score = 34;
+        }
+        else if (SceneManager.GetActiveScene().name == "Level3")
+        {
+            score = 67;
+        }
+
         UpdateScoreUI();
         UpdateHealthUI();
+
     }
     private void Update()
     {
@@ -63,12 +73,14 @@ public class GameManager : MonoBehaviour
         }
         player.transform.position = playerSpawn.position;
 
+        // Level 2
         if (score > 33 && score <= 66)
         {
             image6.gameObject.SetActive(true);
 
             image5.gameObject.SetActive(false);
         }
+        // Level 3
         if (score > 66)
         {
             levelup();
@@ -76,10 +88,10 @@ public class GameManager : MonoBehaviour
         if (score >= 100)
         {
             // Win Game
+            image8.gameObject.SetActive(true);
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
             restartButton.gameObject.SetActive(true);   // restart button
-            image8.gameObject.SetActive(true);
         }
 
 
