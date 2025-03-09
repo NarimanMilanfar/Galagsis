@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     //public TextMeshProUGUI healthText;
 
     public Button restartButton;
+    public Button backToMainMenuButton;
 
     void Awake()
     {
@@ -91,7 +92,8 @@ public class GameManager : MonoBehaviour
             image8.gameObject.SetActive(true);
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);   // restart button
+            restartButton.gameObject.SetActive(true);
+            backToMainMenuButton.gameObject.SetActive(true);
         }
 
 
@@ -120,7 +122,8 @@ public class GameManager : MonoBehaviour
             // Game Over
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);   // restart button
+            restartButton.gameObject.SetActive(true);
+            backToMainMenuButton.gameObject.SetActive(true);
             image4.gameObject.SetActive(true);
         }
 
