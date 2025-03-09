@@ -48,7 +48,7 @@ public class TimerManager : MonoBehaviour
 
                 if (gameManager != null)
                 {
-                    gameManager.TimeUp();
+                    gameManager.GameOver();
                 }
             }
         }

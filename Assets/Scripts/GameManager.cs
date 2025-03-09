@@ -72,9 +72,6 @@ public class GameManager : MonoBehaviour
             Destroy(player);
             player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-
-
-
         }
         player.transform.position = playerSpawn.position;
 
@@ -91,9 +88,6 @@ public class GameManager : MonoBehaviour
         if (score >= 100)
         {
             // Win Game
-            Cursor.visible = true;  // Show the cursor
-            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);   // restart button
             //change this to a GameWon method
             GameWon();
         }
@@ -118,6 +112,10 @@ public class GameManager : MonoBehaviour
 
         health -= amount;
         UpdateHealthUI();
+        if (health < 95)
+        {
+            GameOver();
+        }
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
@@ -130,9 +128,6 @@ public class GameManager : MonoBehaviour
         {
             image3.gameObject.SetActive(false);
             // Game Over
-            Cursor.visible = true;  // Show the cursor
-            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
-            restartButton.gameObject.SetActive(true);   // restart button
             //Changed this to use the GameOver method
             GameOver();
         }
@@ -200,30 +195,28 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    public void TimeUp()
-    {
-        //ends the game
-        isGameOver = true;
-
-        //Only difference between this and GameOver is the text displayed in the timerText
-        Debug.Log("Time is Up!!");
-        timerManager.timerOn = false;
-        image3.gameObject.SetActive(false);
-        image4.gameObject.SetActive(true);
-        timerText.text = "Time is Up!!";
-    }
 
     public void GameOver()
     {
+        //Moved Salma's code to this method 
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        restartButton.gameObject.SetActive(true);   // restart button
+
         isGameOver = true;
         Debug.Log("Game Over");
         timerManager.timerOn = false;
         timerText.text = "Game Over";
         timerManager.timeLeft = 0;
+        image4.gameObject.SetActive(true);
     }
 
     public void GameWon()
     {
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        restartButton.gameObject.SetActive(true);   // restart button
+
         isGameOver = true;
         Debug.Log("Game Won");
         timerManager.timerOn = false;
