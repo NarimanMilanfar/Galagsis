@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
     //public TextMeshProUGUI healthText;
+
+    public Button restartButton;
 
     void Awake()
     {
@@ -99,6 +102,9 @@ public class GameManager : MonoBehaviour
         {
             image3.gameObject.SetActive(false);
             // Game Over
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+            restartButton.gameObject.SetActive(true);
             image4.gameObject.SetActive(true);
         }
 
@@ -140,6 +146,13 @@ public class GameManager : MonoBehaviour
             image7.gameObject.SetActive(false);
         }
 
+    }
+
+    public void RestartGame()
+    {
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
