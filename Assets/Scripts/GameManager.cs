@@ -5,31 +5,26 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public TimerManager timerManager;
     private int score = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
-    public TextMeshProUGUI timerText;
-
+    public Image healthBar;
     public Image image1;
     public Image image2;
     public Image image3;
-    public Image image4;    //Game Over Image
+    public Image image4;
     public Image image5;
     public Image image6;
     public Image image7;
-    public Image image8;    //Game Win Image
-
-
+    public Image image8;
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
     private GameObject player;
     private WaitForSeconds wait;
-    bool isPlayer1 = true;
-
-    private bool isGameOver = false;
+    bool isPlayer1=true;
+    //public TextMeshProUGUI healthText;
 
     void Awake()
     {
@@ -43,37 +38,25 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    { 
-        player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
+    {   player=Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
         UpdateScoreUI();
         UpdateHealthUI();
-
-        //initialize the timer
-        if (timerManager != null)
-        {
-            timerManager.InitializeTimer(this);
-        }
     }
     private void Update()
     {
-        //This is how I stop the game from running once it ends
-         if(isGameOver)
-         {
-            return;
-         }
-         
-
-        if (score > 33 && isPlayer1) {
+        
+        if (score > 33&&isPlayer1) { 
             Destroy(player);
-            player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            player=Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-        }
+            
 
+
+        }
         player.transform.position = playerSpawn.position;
 
         if (score > 33 && score <= 66)
@@ -82,54 +65,41 @@ public class GameManager : MonoBehaviour
 
             image5.gameObject.SetActive(false);
         }
-
         if (score > 66)
         {
             levelup();
         }
-
         if (score >= 100)
         {
-            //image8.gameObject.SetActive(true);
-            //change this to a GameWon method
-            GameWon();
+            image8.gameObject.SetActive(true);
         }
-
+     
 
 
     }
     public void AddScore(int amount)
     {
-        //This is how I stop the game from running once it ends
-        if (isGameOver) return;
-
         score += amount;
         UpdateScoreUI();
     }
     public void DecreaseHealth(int amount)
     {
-        //This is how I stop the game from running once it ends
-        if (isGameOver) return;
-
         health -= amount;
         UpdateHealthUI();
-        if (health >= 50 && health < 75)
+        if (health>=50 && health<75)
         {
             image1.gameObject.SetActive(false);
         }
-        else if (health >= 25 && health < 50)
+        else if (health>=25&&health<50)
         {
             image2.gameObject.SetActive(false);
         }
-        else if (health <= 0)
+        else if (health<=0)
         {
-            //image3.gameObject.SetActive(false);
-            //image4.gameObject.SetActive(true);
-
-            //Changed this to use the GameOver method
-            GameOver();
+            image3.gameObject.SetActive(false);
+            image4.gameObject.SetActive(true);
         }
-
+        
     }
 
     void UpdateScoreUI()
@@ -143,33 +113,31 @@ public class GameManager : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
+            healthText.text = "Health: " + health+"%"; // Method to constantly update UI text
         }
-    }
-    public void UpdateTimerUI(float timeLeft)
-    {
-        if (timerText != null)
-        {
-            //This is how I stop the game from running once it ends
-            if (isGameOver)
-            {
-                return;
-            }
-            else
-            {
-                float minutes = Mathf.FloorToInt(timeLeft / 60);
-                float seconds = Mathf.FloorToInt(timeLeft % 60);
-                timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            }
-        }
+
+         healthBar.fillAmount = health / 100f;
     }
     public int GetScore()
     {
         return score;
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth;
+        UpdateHealthUI();
+    }
+
     public void levelup()
     {
+
+      
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
@@ -186,36 +154,4 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void TimeUp()
-    {
-        //ends the game
-        isGameOver = true;
-
-        Debug.Log("Time is Up!!");
-        timerManager.timerOn = false;
-        image3.gameObject.SetActive(false);
-        image4.gameObject.SetActive(true);
-        timerText.text = "Time is Up!!";
-    }
-
-    public void GameOver()
-    {
-        //Uncomment when implementing game over fix
-        isGameOver = true;
-        Debug.Log("Game Over");
-        timerManager.timerOn = false;
-        timerText.text = "Game Over";
-        timerManager.timeLeft = 0;
-    }
-
-    public void GameWon()
-    {
-        //Uncomment when implementing game over fix
-        isGameOver = true;
-        Debug.Log("Game Won");
-        timerManager.timerOn = false;
-        timerText.text = "Game Won";
-        timerManager.timeLeft = 0;
-        image8.gameObject.SetActive(true);
-    }
 }
