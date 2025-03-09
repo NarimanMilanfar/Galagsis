@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public TimerManager timerManager;
     private int score = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI timerText;
     public Image image1;
     public Image image2;
     public Image image3;
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
     public Image image5;
     public Image image6;
     public Image image7;
-    public Image image8;
+    public Image image8;    //Game Won Image
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     bool isPlayer1 = true;
     //public TextMeshProUGUI healthText;
 
+    public bool isGameOver = false;
     public Button restartButton;
 
     void Awake()
@@ -48,6 +51,12 @@ public class GameManager : MonoBehaviour
 
         UpdateScoreUI();
         UpdateHealthUI();
+
+        //initialize the timer
+        if(timerManager != null)
+        {
+            timerManager.InitializeTimer(this);
+        }
     }
     private void Update()
     {
@@ -142,6 +151,23 @@ public class GameManager : MonoBehaviour
         if (healthText != null)
         {
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
+        }
+    }
+    public void UpdateTimerUI(float timeLeft)
+    {
+        if (timerText != null)
+        {
+            //This is how I stop the game from running once it ends
+            if (isGameOver)
+            {
+                return;
+            }
+            else
+            {
+                float minutes = Mathf.FloorToInt(timeLeft / 60);
+                float seconds = Mathf.FloorToInt(timeLeft % 60);
+                timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
         }
     }
     public int GetScore()
