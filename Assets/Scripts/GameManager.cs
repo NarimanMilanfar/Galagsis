@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameManager : MonoBehaviour
     public Image image1;
     public Image image2;
     public Image image3;
-    public Image image4;
+    public Image image4;    // Game Over Image
     public Image image5;
     public Image image6;
     public Image image7;
@@ -23,8 +24,10 @@ public class GameManager : MonoBehaviour
     public Transform playerSpawn;
     private GameObject player;
     private WaitForSeconds wait;
-    bool isPlayer1=true;
+    bool isPlayer1 = true;
     //public TextMeshProUGUI healthText;
+
+    public Button restartButton;
 
     void Awake()
     {
@@ -40,7 +43,8 @@ public class GameManager : MonoBehaviour
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   player=Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
+    {
+        player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
         UpdateScoreUI();
@@ -48,12 +52,13 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        
-        if (score > 33&&isPlayer1) { 
+
+        if (score > 33 && isPlayer1)
+        {
             Destroy(player);
-            player=Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-            
+
 
 
         }
@@ -71,9 +76,13 @@ public class GameManager : MonoBehaviour
         }
         if (score >= 100)
         {
+            // Win Game
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+            restartButton.gameObject.SetActive(true);   // restart button
             image8.gameObject.SetActive(true);
         }
-     
+
 
 
     }
@@ -86,20 +95,24 @@ public class GameManager : MonoBehaviour
     {
         health -= amount;
         UpdateHealthUI();
-        if (health>=50 && health<75)
+        if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
         }
-        else if (health>=25&&health<50)
+        else if (health >= 25 && health < 50)
         {
             image2.gameObject.SetActive(false);
         }
-        else if (health<=0)
+        else if (health <= 0)
         {
             image3.gameObject.SetActive(false);
+            // Game Over
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+            restartButton.gameObject.SetActive(true);   // restart button
             image4.gameObject.SetActive(true);
         }
-        
+
     }
 
     void UpdateScoreUI()
@@ -113,7 +126,7 @@ public class GameManager : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "Health: " + health+"%"; // Method to constantly update UI text
+            healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
         }
 
          healthBar.fillAmount = health / 100f;
@@ -137,7 +150,7 @@ public class GameManager : MonoBehaviour
     public void levelup()
     {
 
-      
+
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
@@ -153,5 +166,13 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void RestartGame()
+    {
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
 }
