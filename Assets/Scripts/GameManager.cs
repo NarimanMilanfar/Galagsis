@@ -1,35 +1,32 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public TimerManager timerManager;
     private int score = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
-    public TextMeshProUGUI timerText;
-
     public Image image1;
     public Image image2;
     public Image image3;
-    public Image image4;    //Game Over Image
+    public Image image4;    // Game Over Image
     public Image image5;
     public Image image6;
     public Image image7;
-    public Image image8;    //Game Win Image
-
-
+    public Image image8;
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
     private GameObject player;
     private WaitForSeconds wait;
     bool isPlayer1 = true;
+    //public TextMeshProUGUI healthText;
 
-    private bool isGameOver = false;
+    public Button restartButton;
 
     void Awake()
     {
@@ -43,21 +40,14 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    { 
+    {
         player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
         levelup();
 
         UpdateScoreUI();
         UpdateHealthUI();
-
-        //initialize the timer
-        if (timerManager != null)
-        {
-            timerManager.InitializeTimer(this);
-        }
     }
     private void Update()
     {
@@ -73,8 +63,10 @@ public class GameManager : MonoBehaviour
             Destroy(player);
             player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
-        }
 
+
+
+        }
         player.transform.position = playerSpawn.position;
 
         if (score > 33 && score <= 66)
@@ -83,14 +75,16 @@ public class GameManager : MonoBehaviour
 
             image5.gameObject.SetActive(false);
         }
-
         if (score > 66)
         {
             levelup();
         }
-
         if (score >= 100)
         {
+            // Win Game
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+            restartButton.gameObject.SetActive(true);   // restart button
             //change this to a GameWon method
             GameWon();
         }
@@ -125,6 +119,11 @@ public class GameManager : MonoBehaviour
         }
         else if (health <= 0)
         {
+            image3.gameObject.SetActive(false);
+            // Game Over
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+            restartButton.gameObject.SetActive(true);   // restart button
             //Changed this to use the GameOver method
             GameOver();
         }
@@ -145,30 +144,14 @@ public class GameManager : MonoBehaviour
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
         }
     }
-    public void UpdateTimerUI(float timeLeft)
-    {
-        if (timerText != null)
-        {
-            //This is how I stop the game from running once it ends
-            if (isGameOver)
-            {
-                return;
-            }
-            else
-            {
-                float minutes = Mathf.FloorToInt(timeLeft / 60);
-                float seconds = Mathf.FloorToInt(timeLeft % 60);
-                timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            }
-        }
-    }
     public int GetScore()
     {
         return score;
     }
-
     public void levelup()
     {
+
+
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
@@ -185,6 +168,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void RestartGame()
+    {
+        Cursor.visible = true;  // Show the cursor
+        Cursor.lockState = CursorLockMode.None;  // Unlock the cursor
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     public void TimeUp()
     {
         //ends the game
@@ -216,4 +205,6 @@ public class GameManager : MonoBehaviour
         timerManager.timeLeft = 0;
         image8.gameObject.SetActive(true);
     }
+
+
 }
