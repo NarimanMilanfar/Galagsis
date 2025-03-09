@@ -11,7 +11,6 @@ public class TimerManager : MonoBehaviour
     {
         this.gameManager = gameManager;
         timerOn = true;
-        //300f just means 300 seconds ie: 5 minutes
         timeLeft = 300f;
         gameManager.UpdateTimerUI(timeLeft);
     }
@@ -44,7 +43,6 @@ public class TimerManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is Up!!");
                 timeLeft = 0;
                 timerOn = false;
 

@@ -62,7 +62,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //This is how I stop the game from running once it ends
-         if(isGameOver)
+        //Just remove this line if you want to keep updating the game after it ends
+        if (isGameOver)
          {
             return;
          }
@@ -90,7 +91,6 @@ public class GameManager : MonoBehaviour
 
         if (score >= 100)
         {
-            //image8.gameObject.SetActive(true);
             //change this to a GameWon method
             GameWon();
         }
@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         //This is how I stop the game from running once it ends
+        //Just remove this line if you want to keep adding score after the game ends
         if (isGameOver) return;
 
         score += amount;
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
     public void DecreaseHealth(int amount)
     {
         //This is how I stop the game from running once it ends
+        //Just remove this line if you want to keep decreasing health after the game ends
         if (isGameOver) return;
 
         health -= amount;
@@ -123,9 +125,6 @@ public class GameManager : MonoBehaviour
         }
         else if (health <= 0)
         {
-            //image3.gameObject.SetActive(false);
-            //image4.gameObject.SetActive(true);
-
             //Changed this to use the GameOver method
             GameOver();
         }
@@ -191,6 +190,7 @@ public class GameManager : MonoBehaviour
         //ends the game
         isGameOver = true;
 
+        //Only difference between this and GameOver is the text displayed in the timerText
         Debug.Log("Time is Up!!");
         timerManager.timerOn = false;
         image3.gameObject.SetActive(false);
@@ -200,7 +200,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //Uncomment when implementing game over fix
         isGameOver = true;
         Debug.Log("Game Over");
         timerManager.timerOn = false;
@@ -210,7 +209,6 @@ public class GameManager : MonoBehaviour
 
     public void GameWon()
     {
-        //Uncomment when implementing game over fix
         isGameOver = true;
         Debug.Log("Game Won");
         timerManager.timerOn = false;
