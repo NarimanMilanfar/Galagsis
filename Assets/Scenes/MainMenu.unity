@@ -515,7 +515,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.682
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 1629477827}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1404,11 +1404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b0aea146b14634698e0fc432e5905e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
-  backgroundClip: {fileID: 0}
-  bulletClip: {fileID: 0}
-  explosionClip: {fileID: 0}
+  musicSource: {fileID: 718317947}
+  sfxSource: {fileID: 1321362641}
+  backgroundClip: {fileID: 8300000, guid: bfcec17024d8bf0449151abbb3d6cdfd, type: 3}
+  bulletClip: {fileID: 8300000, guid: ab0786e3c3a95fb4ca3f20c7bd4ef38a, type: 3}
+  explosionClip: {fileID: 8300000, guid: b95c5a59c9590a24f97f75f69c304558, type: 3}
 --- !u!4 &1629477828
 Transform:
   m_ObjectHideFlags: 0

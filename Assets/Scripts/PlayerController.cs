@@ -17,7 +17,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 defaultPosition;
     public GameObject explosionParticle;
 
+    private AudioManager audioManager;
+
     public float shootForce = 9000f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,6 +54,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
+
+            //Added bullet shot audio here
+            if(AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.bulletClip);
+            }
             bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward *shootForce);
             Destroy(bullet, 5);
         }

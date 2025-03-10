@@ -3,6 +3,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public GameObject explosionParticle;
+    private AudioManager audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +19,13 @@ public class Shoot : MonoBehaviour
     {   
         if (collision.gameObject.tag == "Enemy")
         {
-           GameObject explosion= Instantiate(explosionParticle, transform.position, transform.rotation);
+            //Added explosion audio here
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);
+            }
+
+            GameObject explosion= Instantiate(explosionParticle, transform.position, transform.rotation);
             Destroy(gameObject);
             Destroy(collision.gameObject);
             Destroy(explosion, 2);

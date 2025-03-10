@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
         PlayBackgroundMusic();
     }
 
-    private void PlayBackgroundMusic()
+    public void PlayBackgroundMusic()
     {
         Debug.Log("PlayBackgroundMusic");
         if (musicSource != null && backgroundClip != null)
@@ -44,6 +44,14 @@ public class AudioManager : MonoBehaviour
             musicSource.clip = backgroundClip;
             musicSource.loop = true;
             musicSource.Play();
+        }
+    }
+
+    public void PlaySound (AudioClip clip)
+    {
+        if (sfxSource != null && clip != null)
+        {
+            sfxSource.PlayOneShot(clip);
         }
     }
 }
