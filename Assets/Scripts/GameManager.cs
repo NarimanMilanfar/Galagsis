@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private WaitForSeconds wait;
     bool isPlayer1 = true;
+    private int scoreUI;
     //public TextMeshProUGUI healthText;
 
     public bool isGameOver = false;
@@ -48,20 +49,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
-        levelup();
+        
 
         if (SceneManager.GetActiveScene().name == "Level2")
         {
+            scoreUI = 0;
             score = 34;
         }
         else if (SceneManager.GetActiveScene().name == "Level3")
         {
+            scoreUI = 0;
             score = 67;
         }
 
         UpdateScoreUI();
         UpdateHealthUI();
-
+        levelup();
         //initialize the timer
         if (timerManager != null)
         {
@@ -99,7 +102,8 @@ public class GameManager : MonoBehaviour
         {
             levelup();
         }
-        if (score >= 100)
+        
+        if (scoreUI >= 100)
         {
 
             // Win Game
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         score += amount;
+        scoreUI += amount; 
         UpdateScoreUI();
     }
     public void DecreaseHealth(int amount)
@@ -149,7 +154,7 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + score; // Method to constantly update UI text
+            scoreText.text = "Score: " + scoreUI; // Method to constantly update UI text
         }
     }
     void UpdateHealthUI()
