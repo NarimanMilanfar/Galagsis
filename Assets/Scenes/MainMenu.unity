@@ -515,7 +515,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.682
+  m_Volume: 0.49
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1409,6 +1409,8 @@ MonoBehaviour:
   backgroundClip: {fileID: 8300000, guid: bfcec17024d8bf0449151abbb3d6cdfd, type: 3}
   bulletClip: {fileID: 8300000, guid: ab0786e3c3a95fb4ca3f20c7bd4ef38a, type: 3}
   explosionClip: {fileID: 8300000, guid: b95c5a59c9590a24f97f75f69c304558, type: 3}
+  gameOverClip: {fileID: 8300000, guid: f4a2ffc60ac6bd544b57e6ab8077c631, type: 3}
+  victoryClip: {fileID: 8300000, guid: fcc619247ebf5094bba7154bd5d5456a, type: 3}
 --- !u!4 &1629477828
 Transform:
   m_ObjectHideFlags: 0

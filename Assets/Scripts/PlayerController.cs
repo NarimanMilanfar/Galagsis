@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
             {
                 AudioManager.instance.PlaySound(AudioManager.instance.bulletClip);
             }
+
             bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward *shootForce);
             Destroy(bullet, 5);
         }
@@ -68,25 +69,25 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(42, 0, 0);
         }
         else if (transform.position.x < -47) { transform.position = new Vector3(-47, 0, 0); }
-
-
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            //Added explosion audio here
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);
+            }
+
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
             Destroy(collision.gameObject);
             GameManager.Instance.DecreaseHealth(3);
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-
             transform.position = defaultPosition;
-
         }
     }
-
-
 }
 

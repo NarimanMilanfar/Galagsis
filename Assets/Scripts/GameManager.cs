@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     public Button backToMainMenuButton;
 
+    private AudioManager audioManager;
+
     void Awake()
     {
         // executing singleton pattern
@@ -81,6 +83,8 @@ public class GameManager : MonoBehaviour
         //     return;
         // }
 
+        //REMOVE THIS BEFORE COMMIT THIS IS FOR TESTING
+        if (score >= 1&& isGameOver==false) { GameWon(); }
 
         if (score > 33 && isPlayer1)
         {
@@ -130,6 +134,9 @@ public class GameManager : MonoBehaviour
 
         health -= amount;
         UpdateHealthUI();
+
+        //REMOVE THIS IT IS FOR TESTING PURPOSES ONLY
+        if (health < 99) { GameOver(); }
 
         if (health >= 50 && health < 75)
         {
@@ -215,6 +222,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        //Added Game Over audio here
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
+        }
+
         //Moved Salma's code to this method 
         // Avoid overlap status or images
         if (image8.gameObject.activeSelf)
@@ -246,6 +259,12 @@ public class GameManager : MonoBehaviour
 
     public void GameWon()
     {
+        //Added victory audio here
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.victoryClip);
+        }
+
         // Avoid overlap status or images
         if (image4.gameObject.activeSelf)
         {
