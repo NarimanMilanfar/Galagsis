@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject explosionParticle;
 
     private AudioManager audioManager;
+    private bool isMoving = false;
 
     public float shootForce = 9000f;
 
@@ -37,6 +38,26 @@ public class PlayerController : MonoBehaviour
         
         // Move the character left/right
         transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
+
+        //This is the logic for if the player is moving
+        //Turns on/off the moving sfx
+        if(moveDirection != 0 && !isMoving)
+        {
+            isMoving = true;
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayRocketSound();
+            }
+        }
+        else if (moveDirection == 0 && isMoving)
+        {
+            isMoving = false;
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.StopRocketSound();
+            }
+        }
+
         //horizontal = Input.GetAxis("Mouse X");
         //vertical = Input.GetAxis("Mouse Y");
 
@@ -53,13 +74,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
-
             //Added bullet shot audio here
-            if(AudioManager.instance != null)
+            if (AudioManager.instance != null)
             {
                 AudioManager.instance.PlaySound(AudioManager.instance.bulletClip);
             }
+
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
 
             bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward *shootForce);
             Destroy(bullet, 5);

@@ -19,7 +19,7 @@ public class Shoot : MonoBehaviour
     {   
         if (collision.gameObject.tag == "Enemy")
         {
-            //Added explosion audio here
+            //Added explosion audio here, loud as it will be destroyed
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);

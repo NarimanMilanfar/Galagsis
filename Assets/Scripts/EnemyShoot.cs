@@ -18,6 +18,11 @@ public class EnemyShoot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            //Added explosion audio here
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);
+            }
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
             
             Destroy(explosion, 2);

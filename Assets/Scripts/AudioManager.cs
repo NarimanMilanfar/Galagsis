@@ -3,12 +3,13 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    public bool isLoserMusicPlaying = false;
 
     [Header ("Audio Sources")]
 
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
-    //TODO: Add Rocket motion sound like in class demo??
+    [SerializeField] AudioSource rocketSource;
 
     [Header("Audio Clips")]
 
@@ -17,6 +18,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip explosionClip;
     public AudioClip gameOverClip;
     public AudioClip victoryClip;
+    public AudioClip rocketClip;
+    public AudioClip buttonClip;
 
     private void Awake()
     {
@@ -43,9 +46,26 @@ public class AudioManager : MonoBehaviour
         Debug.Log("PlayBackgroundMusic");
         if (musicSource != null && backgroundClip != null)
         {
+            if(musicSource.isPlaying)
+            {
+                musicSource.Stop();
+            }
             musicSource.clip = backgroundClip;
             musicSource.loop = true;
             musicSource.Play();
+            isLoserMusicPlaying = false;
+        }
+    }
+
+    public void PlayLoserMusic(AudioClip clip)
+    {
+        if (musicSource != null && clip != null)
+        {
+            musicSource.Stop();
+            musicSource.clip = clip;
+            musicSource.loop = false;
+            musicSource.Play();
+            isLoserMusicPlaying = true;
         }
     }
 
@@ -54,6 +74,24 @@ public class AudioManager : MonoBehaviour
         if (sfxSource != null && clip != null)
         {
             sfxSource.PlayOneShot(clip);
+        }
+    }
+
+    public void PlayRocketSound()
+    {
+        if (rocketSource != null && !rocketSource.isPlaying)
+        {
+            rocketSource.clip = rocketClip;
+            rocketSource.loop = true;
+            rocketSource.Play();
+        }
+    }
+
+    public void StopRocketSound()
+    {
+        if (rocketSource != null && rocketSource.isPlaying)
+        {
+            rocketSource.Stop();
         }
     }
 }

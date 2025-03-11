@@ -83,9 +83,7 @@ public class GameManager : MonoBehaviour
         //     return;
         // }
 
-        //REMOVE THIS BEFORE COMMIT THIS IS FOR TESTING
-        if (score >= 1&& isGameOver==false) { GameWon(); }
-
+        
         if (score > 33 && isPlayer1)
         {
             Destroy(player);
@@ -135,9 +133,7 @@ public class GameManager : MonoBehaviour
         health -= amount;
         UpdateHealthUI();
 
-        //REMOVE THIS IT IS FOR TESTING PURPOSES ONLY
-        if (health < 99) { GameOver(); }
-
+        if(health <99) {GameOver(); }
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
@@ -222,12 +218,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //Added Game Over audio here
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
-        }
-
         //Moved Salma's code to this method 
         // Avoid overlap status or images
         if (image8.gameObject.activeSelf)
@@ -255,6 +245,11 @@ public class GameManager : MonoBehaviour
         timerText.text = "Game Over";
         timerManager.timeLeft = 0;
 
+        //Added Game Over audio here
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayLoserMusic(AudioManager.instance.gameOverClip);
+        }
     }
 
     public void GameWon()
@@ -262,7 +257,7 @@ public class GameManager : MonoBehaviour
         //Added victory audio here
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.PlaySound(AudioManager.instance.victoryClip);
+            AudioManager.instance.PlayLoserMusic(AudioManager.instance.victoryClip);
         }
 
         // Avoid overlap status or images
