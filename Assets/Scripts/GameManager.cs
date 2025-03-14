@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = Instantiate(player1, playerSpawn.position, playerSpawn.rotation);
-        
+
 
         if (SceneManager.GetActiveScene().name == "Level2")
         {
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
         {
             levelup();
         }
-        
+
         if (scoreUI >= 100)
         {
 
@@ -121,7 +122,7 @@ public class GameManager : MonoBehaviour
         if (isGameOver) return;
 
         score += amount;
-        scoreUI += amount; 
+        scoreUI += amount;
         UpdateScoreUI();
     }
     public void DecreaseHealth(int amount)
@@ -156,6 +157,10 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
         {
+             scoreText.transform.DOScale(1.2f, 0.1f).OnComplete(() =>
+            {
+                scoreText.transform.DOScale(1f, 0.1f);
+            });
             scoreText.text = "Score: " + scoreUI; // Method to constantly update UI text
         }
     }
