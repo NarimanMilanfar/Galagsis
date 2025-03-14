@@ -86,6 +86,10 @@ public class GameManager : MonoBehaviour
         //     return;
         // }
 
+        if (score == 1)
+        {
+            GameWon();
+        }
         
         if (score > 33 && isPlayer1)
         {
@@ -133,9 +137,14 @@ public class GameManager : MonoBehaviour
         //Just remove this line if you want to keep decreasing health after the game ends
         if (isGameOver) return;
 
+        
         health -= amount;
         UpdateHealthUI();
 
+        if (health <= 99)
+        {
+            GameOver();
+        }
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
@@ -255,20 +264,14 @@ public class GameManager : MonoBehaviour
         //Added Game Over audio here
         if (AudioManager.instance != null)
         {
-            AudioManager.instance.PlayLoserMusic(AudioManager.instance.gameOverClip);
+            AudioManager.instance.PlayGameOverMusic(AudioManager.instance.gameOverClip);
         }
     }
 
     public void GameWon()
     {
-        //Added victory audio here
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlayLoserMusic(AudioManager.instance.victoryClip);
-        }
-
         // Avoid overlap status or images
-        if (image4.gameObject.activeSelf)
+        if (image4.gameObject.activeSelf || isGameOver==true)
         {
             // do nothing (skip win cause already game over)
             return;
@@ -291,6 +294,12 @@ public class GameManager : MonoBehaviour
         timerText.text = "Game Won";
         timerManager.timeLeft = 0;
         image8.gameObject.SetActive(true);
+
+        //Added victory audio here
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayGameOverMusic(AudioManager.instance.victoryClip);
+        }
     }
 
 

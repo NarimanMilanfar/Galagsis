@@ -1533,6 +1533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b0aea146b14634698e0fc432e5905e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoserMusicPlaying: 0
   musicSource: {fileID: 718317947}
   sfxSource: {fileID: 1321362641}
   rocketSource: {fileID: 889384412}
@@ -1540,7 +1541,7 @@ MonoBehaviour:
   bulletClip: {fileID: 8300000, guid: ab0786e3c3a95fb4ca3f20c7bd4ef38a, type: 3}
   explosionClip: {fileID: 8300000, guid: b95c5a59c9590a24f97f75f69c304558, type: 3}
   gameOverClip: {fileID: 8300000, guid: 139c7024a8247aa4eaba880673c06731, type: 3}
-  victoryClip: {fileID: 8300000, guid: fcc619247ebf5094bba7154bd5d5456a, type: 3}
+  victoryClip: {fileID: 8300000, guid: 5f30f9de0fe05fa4d96302acc264318d, type: 3}
   rocketClip: {fileID: 8300000, guid: fed2089560dee6341b189ea8912b9209, type: 3}
   buttonClip: {fileID: 8300000, guid: cafa756ecf768d341b70b31ad6f5f480, type: 3}
 --- !u!4 &1629477828

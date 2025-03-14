@@ -13,8 +13,8 @@ public class SceneController : MonoBehaviour
         }
 
         //Check if the audio needs to be reset
-        bool isLoserMusicPlaying = AudioManager.instance.isLoserMusicPlaying;
-        if (isLoserMusicPlaying==true)
+        bool isGameOverMusicPlaying = AudioManager.instance.isGameOverMusicPlaying;
+        if (isGameOverMusicPlaying==true)
         {
             AudioManager.instance.PlayBackgroundMusic();
         }

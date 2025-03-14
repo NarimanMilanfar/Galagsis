@@ -3,7 +3,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public bool isLoserMusicPlaying = false;
+    public bool isGameOverMusicPlaying = false;
 
     [Header ("Audio Sources")]
 
@@ -53,19 +53,19 @@ public class AudioManager : MonoBehaviour
             musicSource.clip = backgroundClip;
             musicSource.loop = true;
             musicSource.Play();
-            isLoserMusicPlaying = false;
+            isGameOverMusicPlaying = false;
         }
     }
 
-    public void PlayLoserMusic(AudioClip clip)
+    public void PlayGameOverMusic(AudioClip clip)
     {
         if (musicSource != null && clip != null)
         {
             musicSource.Stop();
             musicSource.clip = clip;
-            musicSource.loop = false;
+            musicSource.loop = true;
             musicSource.Play();
-            isLoserMusicPlaying = true;
+            isGameOverMusicPlaying = true;
         }
     }
 
