@@ -133,7 +133,6 @@ public class GameManager : MonoBehaviour
         health -= amount;
         UpdateHealthUI();
 
-        if(health <99) {GameOver(); }
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
