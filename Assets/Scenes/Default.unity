@@ -1480,6 +1480,7 @@ MonoBehaviour:
   player1: {fileID: 1173932658975056175, guid: 65db26ab14889144bb32948b3bcfbca8, type: 3}
   player2: {fileID: 1523317472505394208, guid: 2b6510c9bf7e4a3408e4a4d002992ffb, type: 3}
   playerSpawn: {fileID: 1099425656}
+  healthBar: {fileID: 604037866}
   isGameOver: 0
   restartButton: {fileID: 569537140}
   backToMainMenuButton: {fileID: 1316845311}

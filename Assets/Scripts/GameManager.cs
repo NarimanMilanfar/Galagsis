@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
     private int scoreUI;
+    public Image healthBar;
+
     //public TextMeshProUGUI healthText;
 
     public bool isGameOver = false;
@@ -161,6 +163,7 @@ public class GameManager : MonoBehaviour
     {
         if (healthText != null)
         {
+            healthBar.fillAmount = health / 100f;
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
         }
     }
