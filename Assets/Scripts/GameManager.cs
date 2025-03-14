@@ -152,15 +152,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void HealthBoost(int amount)
+    {
+        health += amount; 
+        health = Mathf.Clamp(health, 0, 100); 
+        UpdateHealthUI();  
+        Debug.Log("Health Boost! Current Health: " + health);
+    }
+
 
     void UpdateScoreUI()
     {
         if (scoreText != null)
         {
-             scoreText.transform.DOScale(1.2f, 0.1f).OnComplete(() =>
-            {
-                scoreText.transform.DOScale(1f, 0.1f);
-            });
+            scoreText.transform.DOScale(1.2f, 0.1f).OnComplete(() =>
+           {
+               scoreText.transform.DOScale(1f, 0.1f);
+           });
             scoreText.text = "Score: " + scoreUI; // Method to constantly update UI text
         }
     }

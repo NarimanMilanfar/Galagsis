@@ -3,6 +3,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public GameObject explosionParticle;
+     public GameObject healthPickupPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,10 +20,18 @@ public class Shoot : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
            GameObject explosion= Instantiate(explosionParticle, transform.position, transform.rotation);
+
+
             Destroy(gameObject);
             Destroy(collision.gameObject);
             Destroy(explosion, 2);
             GameManager.Instance.AddScore(1);
+
+
+            // logic for health pickup
+            Debug.Log("Enemy hit by bullet");
+            GameObject healthPickup = Instantiate(healthPickupPrefab, transform.position, transform.rotation);
+            healthPickup.transform.localScale = new Vector3(0.07f, 0.07f, 0.07f);
         }
     }
 }
