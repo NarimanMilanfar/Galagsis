@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         //}
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             //Added bullet shot audio here
             if (AudioManager.instance != null)
