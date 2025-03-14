@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 10
-  explosionParticle: {fileID: 0}
+  explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
 --- !u!54 &3707184575938560247
 Rigidbody:
   m_ObjectHideFlags: 0

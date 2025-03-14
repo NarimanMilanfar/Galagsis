@@ -8,12 +8,12 @@ public class HealthPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Bullet")) // If hit by a bullet
+        if (other.CompareTag("PlayerBullet")) 
         {
             Debug.Log("Health pickup hit by: " + other.gameObject.name);
-            GameManager.Instance.HealthBoost(healthAmount); // Increase player's health
-            Destroy(other.gameObject); // Destroy the bullet
-            Destroy(gameObject); // Destroy the health pickup
+            GameManager.Instance.HealthBoost(healthAmount); 
+            Destroy(other.gameObject); 
+            Destroy(gameObject); 
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
         }
 
