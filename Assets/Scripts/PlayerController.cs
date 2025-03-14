@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         //}
 
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
             bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward *shootForce);
