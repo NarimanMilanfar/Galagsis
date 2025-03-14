@@ -194,34 +194,6 @@ public class SpawnManager : MonoBehaviour
             Destroy(explosion, 2);
             GameManager.Instance.DecreaseHealth(10);
         }
+        
     }
-
-    void TrySpawnHealthPickup(Vector3 spawnPosition)
-    {
-        // float randomValue = Random.value; // Random number between 0 and 1
-
-        // Debug.Log("About to spawn!");
-
-        // if (randomValue <= healthPickupChance) // 20% chance (or whatever value you set)
-        // {
-        //     Debug.Log("should be spawning!");
-        Instantiate(healthPickupPrefab, spawnPosition, transform.rotation);
-
-
-        // float randomValue = Random.value;  // Get a random number between 0 and 1
-        // Debug.Log("Random Value: " + randomValue); // Log the random value to see if it's under the threshold
-        // if (randomValue <= healthPickupChance)  // If random value is <= healthPickupChance, spawn health pickup
-        // {
-        //     Debug.Log("Spawning Health Pickup!");  // Log when health pickup is about to spawn
-        //     Instantiate(healthPickupPrefab, spawnPosition, transform.rotation);
-        // }
-        // else
-        // {
-        //     Debug.Log("Health pickup not spawned, random value too high.");
-        // }
-
-
-
-    }
-
 }

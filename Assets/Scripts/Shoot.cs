@@ -28,11 +28,24 @@ public class Shoot : MonoBehaviour
             GameManager.Instance.AddScore(1);
 
 
-            // logic for health pickup
+            // logic for health pickup, eventually put in own method below
             Debug.Log("Enemy hit by bullet");
             GameObject healthPickup = Instantiate(healthPickupPrefab, transform.position, transform.rotation);
             healthPickup.transform.localScale = new Vector3(0.07f, 0.07f, 0.07f);
         }
+    }
+
+    private void TrySpawnHealthPickup(Vector3 spawnPosition)
+    {
+        // float randomValue = Random.value; 
+
+        // Debug.Log("About to spawn!");
+
+        // if (randomValue <= healthPickupChance) 
+        // {
+        //     Debug.Log("should be spawning!");
+    //     Instantiate(healthPickupPrefab, spawnPosition, transform.rotation);
+    // }
     }
 }
 
