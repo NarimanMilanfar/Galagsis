@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
     private int scoreUI;
+    
     public Image healthBar;
 
     //public TextMeshProUGUI healthText;
@@ -58,6 +59,10 @@ public class GameManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Level2")
         {
+            if(healthBar == null)
+            {
+                healthBar = GameObject.Find("HealthBar").GetComponent<Image>();
+            }
             scoreUI = 0;
             score = 34;
         }
@@ -85,11 +90,6 @@ public class GameManager : MonoBehaviour
         // {
         //     return;
         // }
-
-        if (score == 1)
-        {
-            GameWon();
-        }
         
         if (score > 33 && isPlayer1)
         {
@@ -141,10 +141,6 @@ public class GameManager : MonoBehaviour
         health -= amount;
         UpdateHealthUI();
 
-        if (health <= 99)
-        {
-            GameOver();
-        }
         if (health >= 50 && health < 75)
         {
             image1.gameObject.SetActive(false);
@@ -177,7 +173,7 @@ public class GameManager : MonoBehaviour
     }
     void UpdateHealthUI()
     {
-        if (healthText != null)
+        if (healthText != null && healthBar != null)
         {
             healthBar.fillAmount = health / 100f;
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
