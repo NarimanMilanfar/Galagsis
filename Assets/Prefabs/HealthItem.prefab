@@ -125,6 +125,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthAmount: 10
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
+  spinSpeed: 100
+  destroyDelay: 2
+  plusTenSprite: {fileID: 2628028934081842781, guid: c9e6a17c28f5a4622b01e8179c70fcfb, type: 3}
 --- !u!54 &3707184575938560247
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -203,6 +206,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e0d606bac28694aeeb1a36209bb181a1, type: 3}
       propertyPath: m_Name
       value: Heart 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e0d606bac28694aeeb1a36209bb181a1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

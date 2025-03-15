@@ -1028,11 +1028,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692258755}
   m_CullTransparentMesh: 1
---- !u!1 &765048750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2002352810588461305, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
-  m_PrefabInstance: {fileID: 6542019797245518686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &765048751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2530962831788089575, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
@@ -3196,8 +3191,6 @@ MonoBehaviour:
   bulletoffset2: 0
   bulletoffset3: 0
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
-  healthPickupPrefab: {fileID: 765048750}
-  healthPickupChance: 0.99
 --- !u!54 &2017219227
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3339,6 +3332,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 799782567}
     m_Modifications:
+    - target: {fileID: 321709850866392086, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2002352810588461305, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
       propertyPath: m_Name
       value: HealthItem
@@ -3383,6 +3380,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6952718866180684738, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6952718866180684738, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a2f5d1bb5c221430cbaf442938aaeb71, type: 2}
     - target: {fileID: 8723374929996465756, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
       propertyPath: explosionParticle
       value: 

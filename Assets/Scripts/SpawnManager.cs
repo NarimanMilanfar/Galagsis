@@ -22,9 +22,6 @@ public class SpawnManager : MonoBehaviour
     public float bulletoffset2;
     public float bulletoffset3;
     public GameObject explosionParticle;
-    public GameObject healthPickupPrefab;
-    public float healthPickupChance = 0.2f;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -194,6 +191,6 @@ public class SpawnManager : MonoBehaviour
             Destroy(explosion, 2);
             GameManager.Instance.DecreaseHealth(10);
         }
-        
+
     }
 }
