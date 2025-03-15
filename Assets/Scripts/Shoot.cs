@@ -29,12 +29,6 @@ public class Shoot : MonoBehaviour
             Destroy(explosion, 2);
             GameManager.Instance.AddScore(1);
 
-
-            // logic for health pickup, eventually put in own method below
-            // Debug.Log("Enemy hit by bullet");
-            // GameObject healthPickup = Instantiate(healthPickupPrefab, transform.position, transform.rotation);
-            // healthPickup.transform.localScale = new Vector3(0.07f, 0.07f, 0.07f);
-
             TrySpawnHealthPickup(transform.position);
         }
     }
@@ -47,6 +41,7 @@ public class Shoot : MonoBehaviour
         {
             GameObject healthPickup = Instantiate(healthPickupPrefab, transform.position, transform.rotation);
             healthPickup.transform.localScale = new Vector3(0.07f, 0.07f, 0.07f);
+            Destroy(healthPickup, 1f);
         }
     }
 }
