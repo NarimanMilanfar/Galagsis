@@ -24,7 +24,7 @@ public class HealthPickUp : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
-            GameObject plusTen = Instantiate(plusTenSprite, transform.position, transform.rotation); // change so it doesn't follow rotation of heart
+            GameObject plusTen = Instantiate(plusTenSprite, transform.position, Quaternion.identity); // change so it doesn't follow rotation of heart
             plusTen.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
             Destroy(plusTen, destroyDelay);
 
