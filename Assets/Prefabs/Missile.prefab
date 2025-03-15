@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1158822334773386707}
   m_Layer: 0
   m_Name: Missile
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
+  healthPickupPrefab: {fileID: 2002352810588461305, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
 --- !u!1 &1183623513585936513
 GameObject:
   m_ObjectHideFlags: 0
