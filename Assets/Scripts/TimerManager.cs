@@ -11,7 +11,7 @@ public class TimerManager : MonoBehaviour
     {
         this.gameManager = gameManager;
         timerOn = true;
-        timeLeft = 300f;
+        timeLeft = 600f;
         gameManager.UpdateTimerUI(timeLeft);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
