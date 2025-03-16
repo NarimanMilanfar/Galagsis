@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Bullet
   - Audio
+  - HealthPickup
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
