@@ -17,7 +17,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 defaultPosition;
     public GameObject explosionParticle;
 
+    private AudioManager audioManager;
+    private bool isMoving = false;
+
     public float shootForce = 9000f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,6 +38,26 @@ public class PlayerController : MonoBehaviour
         
         // Move the character left/right
         transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
+
+        //This is the logic for if the player is moving
+        //Turns on/off the moving sfx
+        if(moveDirection != 0 && !isMoving)
+        {
+            isMoving = true;
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlayRocketSound();
+            }
+        }
+        else if (moveDirection == 0 && isMoving)
+        {
+            isMoving = false;
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.StopRocketSound();
+            }
+        }
+
         //horizontal = Input.GetAxis("Mouse X");
         //vertical = Input.GetAxis("Mouse Y");
 
@@ -50,7 +74,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
+            //Added bullet shot audio here
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.bulletClip);
+            }
+
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
+
             bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward *shootForce);
             Destroy(bullet, 5);
         }
@@ -59,25 +90,25 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(42, 0, 0);
         }
         else if (transform.position.x < -47) { transform.position = new Vector3(-47, 0, 0); }
-
-
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            //Added explosion audio here
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);
+            }
+
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
             Destroy(collision.gameObject);
             GameManager.Instance.DecreaseHealth(3);
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-
             transform.position = defaultPosition;
-
         }
     }
-
-
 }
 

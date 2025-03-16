@@ -6,6 +6,7 @@ public class Shoot : MonoBehaviour
     public GameObject healthPickupPrefab;
     public float healthPickupChance = 0.1f;
 
+    private AudioManager audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +22,13 @@ public class Shoot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+            //Added explosion audio here, loud as it will be destroyed
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);
+            }
+
+             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
 
 
             Destroy(gameObject);

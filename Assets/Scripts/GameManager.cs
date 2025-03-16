@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
     private int scoreUI;
+    
     public Image healthBar;
 
     //public TextMeshProUGUI healthText;
@@ -35,6 +36,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
     public Button restartButton;
     public Button backToMainMenuButton;
+
+    private AudioManager audioManager;
 
     void Awake()
     {
@@ -83,8 +86,7 @@ public class GameManager : MonoBehaviour
         // {
         //     return;
         // }
-
-
+        
         if (score > 33 && isPlayer1)
         {
             Destroy(player);
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
         //Just remove this line if you want to keep decreasing health after the game ends
         if (isGameOver) return;
 
+        
         health -= amount;
         UpdateHealthUI();
 
@@ -174,7 +177,7 @@ public class GameManager : MonoBehaviour
     }
     void UpdateHealthUI()
     {
-        if (healthText != null)
+        if (healthText != null && healthBar != null)
         {
             healthBar.fillAmount = health / 100f;
             healthText.text = "Health: " + health + "%"; // Method to constantly update UI text
@@ -258,12 +261,17 @@ public class GameManager : MonoBehaviour
         timerText.text = "Game Over";
         timerManager.timeLeft = 0;
 
+        //Added Game Over audio here
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayGameOverMusic(AudioManager.instance.gameOverClip);
+        }
     }
 
     public void GameWon()
     {
         // Avoid overlap status or images
-        if (image4.gameObject.activeSelf)
+        if (image4.gameObject.activeSelf || isGameOver==true)
         {
             // do nothing (skip win cause already game over)
             return;
@@ -286,6 +294,12 @@ public class GameManager : MonoBehaviour
         timerText.text = "Game Won";
         timerManager.timeLeft = 0;
         image8.gameObject.SetActive(true);
+
+        //Added victory audio here
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlayGameOverMusic(AudioManager.instance.victoryClip);
+        }
     }
 
 
