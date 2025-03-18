@@ -41,14 +41,15 @@ public class Shoot : MonoBehaviour
             {
                 Debug.Log("x2 Multiplier Achieved!");
                 GameManager.Instance.AddScore(1);
-                // GameManager.Instance.Setx2MultiplierActive();
+                 GameManager.Instance.SetX2Active();
             }
 
             if (GameManager.Instance.rowCount > 6)
             {
                 Debug.Log("x3 Multiplier Achieved!");
                 GameManager.Instance.AddScore(2);
-                // GameManager.Instance.Setx3MultiplierActive();
+                GameManager.Instance.SetX2Inactive();
+                GameManager.Instance.SetX3Active();
             }
 
 

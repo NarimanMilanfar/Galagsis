@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     private AudioManager audioManager;
     public int rowCount;
+    public Image multiplier2;
+    public Image multiplier3;
 
     void Awake()
     {
@@ -67,6 +69,16 @@ public class GameManager : MonoBehaviour
         {
             scoreUI = 0;
             score = 67;
+        }
+
+        if (multiplier3 != null)
+        {
+            multiplier3.gameObject.SetActive(false);
+        }
+
+        if (multiplier2 != null)
+        {
+            multiplier2.gameObject.SetActive(false);
         }
 
         UpdateScoreUI();
@@ -165,6 +177,27 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+    public void SetX2Active()
+    {
+        multiplier2.gameObject.SetActive(true);
+    }
+
+    public void SetX3Active()
+    {
+        multiplier3.gameObject.SetActive(true);
+    }
+
+    public void SetX2Inactive()
+    {
+        multiplier2.gameObject.SetActive(false);
+    }
+
+    public void SetX3Inactive()
+    {
+        multiplier3.gameObject.SetActive(false);
+    }
+    
 
     public void HealthBoost(int amount)
     {
