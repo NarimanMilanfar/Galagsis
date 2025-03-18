@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
     private int scoreUI;
-    
+
     public Image healthBar;
 
     //public TextMeshProUGUI healthText;
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         // {
         //     return;
         // }
-        
+
         if (score > 33 && isPlayer1)
         {
             Destroy(player);
@@ -156,7 +156,7 @@ public class GameManager : MonoBehaviour
         //Just remove this line if you want to keep decreasing health after the game ends
         if (isGameOver) return;
 
-        
+
         health -= amount;
         UpdateHealthUI();
 
@@ -190,20 +190,26 @@ public class GameManager : MonoBehaviour
 
     public void SetX2Inactive()
     {
-        multiplier2.gameObject.SetActive(false);
+        multiplier2.DOFade(0, 0.5f).OnComplete(() =>
+        {
+            multiplier2.gameObject.SetActive(false);
+        });
     }
 
     public void SetX3Inactive()
     {
-        multiplier3.gameObject.SetActive(false);
+        multiplier3.DOFade(0, 0.5f).OnComplete(() =>
+        {
+            multiplier3.gameObject.SetActive(false);
+        });
     }
-    
+
 
     public void HealthBoost(int amount)
     {
-        health += amount; 
-        health = Mathf.Clamp(health, 0, 100); 
-        UpdateHealthUI();  
+        health += amount;
+        health = Mathf.Clamp(health, 0, 100);
+        UpdateHealthUI();
         Debug.Log("Health Boost! Current Health: " + health);
     }
 
@@ -315,7 +321,7 @@ public class GameManager : MonoBehaviour
     public void GameWon()
     {
         // Avoid overlap status or images
-        if (image4.gameObject.activeSelf || isGameOver==true)
+        if (image4.gameObject.activeSelf || isGameOver == true)
         {
             // do nothing (skip win cause already game over)
             return;
