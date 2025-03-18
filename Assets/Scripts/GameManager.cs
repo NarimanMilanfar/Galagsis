@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public Button backToMainMenuButton;
 
     private AudioManager audioManager;
+    public int rowCount;
 
     void Awake()
     {
@@ -115,6 +116,16 @@ public class GameManager : MonoBehaviour
             //change this to a GameWon method
             GameWon();
         }
+    }
+
+    public void AddRowCount()
+    {
+        rowCount++;
+    }
+
+    public void ResetRowCount()
+    {
+        rowCount = 0;
     }
 
     public void AddScore(int amount)

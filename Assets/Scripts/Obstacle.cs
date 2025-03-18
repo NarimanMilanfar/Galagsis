@@ -8,6 +8,7 @@ public class Obstacle : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+            GameManager.Instance.ResetRowCount();
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
