@@ -32,16 +32,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        
         // Get horizontal input (A/D or Arrow keys)
         moveDirection = Input.GetAxis("Horizontal");
         
         // Move the character left/right
         transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
-
-        //This is the logic for if the player is moving
-        //Turns on/off the moving sfx
-        if(moveDirection != 0 && !isMoving)
+      
+            //This is the logic for if the player is moving
+            //Turns on/off the moving sfx
+            if (moveDirection != 0 && !isMoving)
         {
             isMoving = true;
             if (AudioManager.instance != null)

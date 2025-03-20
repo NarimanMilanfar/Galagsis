@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
             isPlayer1 = false;
         }
         player.transform.position = playerSpawn.position;
+        player.transform.rotation = playerSpawn.rotation;
 
         // Level 2
         if (score > 33 && score <= 66)
