@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 320815871}
   - component: {fileID: 320815870}
   - component: {fileID: 320815869}
+  - component: {fileID: 320815874}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Obstacle
@@ -317,8 +318,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20.191055, y: 1, z: 0.6850891}
-  m_Center: {x: -9.59553, y: 0, z: -0.15745625}
+  m_Size: {x: 8.239209, y: 1, z: 0.55520004}
+  m_Center: {x: -3.619608, y: 0, z: -0.222401}
 --- !u!23 &320815871
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -387,6 +388,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1512444859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320815874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320815868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d802cfea47e3a7047888ff128b7a5a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &487305010
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,17 +493,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2530962831788089575, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
   m_PrefabInstance: {fileID: 6542019797245518686}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &765048753 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8723374929996465756, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
-  m_PrefabInstance: {fileID: 6542019797245518686}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38785908467b244c0a7fd1ddd46be8f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &799782566
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,8 +802,8 @@ MonoBehaviour:
   focalPoint: {fileID: 1512444859}
   defaultRotation: {x: 0, y: 0, z: 0, w: 0}
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
-  laserPrefab: {fileID: 365839572196410912, guid: b3a4ee565dbe8f24b8b587d284f02f5f, type: 3}
-  healthPickUp: {fileID: 765048753}
+  tiltAngle: 15
+  tiltSpeed: 5
   shootForce: 9000
 --- !u!54 &1099425659
 Rigidbody:
@@ -933,8 +935,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 46.09089, y: 1, z: 0.6382935}
-  m_Center: {x: 22.545446, y: 0, z: -0.18085407}
+  m_Size: {x: 14.100977, y: 1, z: 0.38948202}
+  m_Center: {x: 6.5504913, y: 0, z: -0.12986565}
 --- !u!23 &1189561307
 MeshRenderer:
   m_ObjectHideFlags: 0
