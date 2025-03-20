@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     private WaitForSeconds wait;
     bool isPlayer1 = true;
     private int scoreUI;
-    
     public Image healthBar;
 
     //public TextMeshProUGUI healthText;
@@ -163,7 +162,7 @@ public class GameManager : MonoBehaviour
         UpdateHealthUI();  
         Debug.Log("Health Boost! Current Health: " + health);
     }
-
+  
 
     void UpdateScoreUI()
     {

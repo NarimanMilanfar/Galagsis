@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -24,11 +25,12 @@ public class SpawnManager : MonoBehaviour
     public GameObject explosionParticle;
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
-
+        
     }
 
     // Update is called once per frame
@@ -85,7 +87,6 @@ public class SpawnManager : MonoBehaviour
         else if (randEnemy == 1)
         {
             GameObject Enemy = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
-
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
             Destroy(Enemy, 5);
         }
@@ -199,6 +200,7 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -243,4 +245,5 @@ public class SpawnManager : MonoBehaviour
         }
 
     }
+    
 }

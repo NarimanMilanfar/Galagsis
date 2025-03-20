@@ -68,18 +68,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //horizontal = Input.GetAxis("Mouse X");
-        //vertical = Input.GetAxis("Mouse Y");
-
-        //if (Input.GetMouseButton(1)) //0 - Left Click , 1 - Right Click 2- middle click
-        //{
-        //    // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
-        //    // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
-        //    player.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
-        //}
-        //if(Input.GetMouseButton(2)) {
-        //    transform.rotation = defaultRotation;
-        //}
 
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
@@ -89,7 +77,7 @@ public class PlayerController : MonoBehaviour
             {
                 AudioManager.instance.PlaySound(AudioManager.instance.bulletClip);
             }
-           
+
                 GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
 
                 bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
