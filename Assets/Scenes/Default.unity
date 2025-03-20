@@ -480,6 +480,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2530962831788089575, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
   m_PrefabInstance: {fileID: 6542019797245518686}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &765048753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8723374929996465756, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
+  m_PrefabInstance: {fileID: 6542019797245518686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38785908467b244c0a7fd1ddd46be8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &799782566
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,6 +800,8 @@ MonoBehaviour:
   focalPoint: {fileID: 1512444859}
   defaultRotation: {x: 0, y: 0, z: 0, w: 0}
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
+  laserPrefab: {fileID: 365839572196410912, guid: b3a4ee565dbe8f24b8b587d284f02f5f, type: 3}
+  healthPickUp: {fileID: 765048753}
   shootForce: 9000
 --- !u!54 &1099425659
 Rigidbody:

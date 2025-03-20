@@ -5,13 +5,15 @@ public class HealthPickUp : MonoBehaviour
     public int healthAmount = 10;
     public GameObject explosionParticle;
     public float spinSpeed = 100f;
-    public float destroyDelay = 2f;
+    public float destroyDelay = 5f;
     public GameObject plusTenSprite;
+ 
 
 
     void Update()
     {
         transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,6 +21,7 @@ public class HealthPickUp : MonoBehaviour
         if (other.CompareTag("PlayerBullet"))
         {
             GameManager.Instance.HealthBoost(healthAmount);
+        
             Destroy(other.gameObject);
             Destroy(gameObject);
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
