@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -25,13 +27,14 @@ public class SpawnManager : MonoBehaviour
     public GameObject explosionParticle;
 
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
-        
+      
     }
+
+    
 
     // Update is called once per frame
     void Update()
@@ -49,8 +52,11 @@ public class SpawnManager : MonoBehaviour
         {
             spawnInterval = 3f;
         }
+
+
     }
-    void SpawnEnemy()
+
+   async void SpawnEnemy()
     {
         float randPositionX = Random.Range(spawnRandomRange, -spawnRandomRange);
         float randPositionX2 = Random.Range(spawnRandomRange, -spawnRandomRange);
@@ -88,6 +94,24 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject Enemy = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+            if (randPositionX > 0)
+            {
+               Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 500);
+               await WaitForSecondsFunction();
+               Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 1200);
+               await WaitForSecondsFunction();
+               Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 2000);
+             }
+           
+            if (randPositionX < 0)
+            {
+
+                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 2000);
+            }
             Destroy(Enemy, 5);
         }
         else if (randEnemy == 2)
@@ -152,9 +176,10 @@ public class SpawnManager : MonoBehaviour
             GameObject Enemy2 = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
 
             Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 7000);
             Destroy(Enemy, 5);
-            Destroy(Enemy2, 5);
+            ;
             bulletoffset3 = Random.Range(-45f, 45f);
             GameObject bullet1 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset3, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
             bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
@@ -171,6 +196,25 @@ public class SpawnManager : MonoBehaviour
                 bullet2.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
                 Destroy(bullet2, 5);
             }
+            if (randPositionX > 0)
+            {
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 2000);
+            }
+
+            if (randPositionX < 0)
+            {
+
+                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 2000);
+            }
+            Destroy(Enemy2, 5);
         }
         else if (randEnemy == 5)
         {
@@ -200,7 +244,10 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
-   
+    async Task WaitForSecondsFunction()
+    {
+        await Task.Delay(1500);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
