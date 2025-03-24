@@ -65,7 +65,7 @@ public class SpawnManager : MonoBehaviour
         float randPositionX = Random.Range(spawnRandomRange, -spawnRandomRange);
         float randPositionX2 = Random.Range(spawnRandomRange, -spawnRandomRange);
 
-        float randEnemy = Random.Range(0, 3);
+        float randEnemy = 0;// Random.Range(0, 3);
         if (gameManager.GetScore() > 33) { randEnemy += 3; }
 
 
@@ -77,6 +77,10 @@ public class SpawnManager : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 randPositionX = randPositionX + 15;
+                if (randPositionX > spawnRandomRange)
+                {
+                    break;
+                }
                 GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
                 Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
                 Destroy(Enemy, 5);
@@ -91,6 +95,10 @@ public class SpawnManager : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     randPositionX = randPositionX - 15;
+                    if (randPositionX < -spawnRandomRange)
+                    {
+                        break;
+                    }
                     GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
                     Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
                     Destroy(Enemy, 5);

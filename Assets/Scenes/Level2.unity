@@ -1876,12 +1876,12 @@ Transform:
   m_GameObject: {fileID: 1099425655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -13.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2194334, y: 2.7499752, z: 1.2194334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1030434513}
-  m_Father: {fileID: 1512444859}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1099425657
 MonoBehaviour:
@@ -1934,6 +1934,8 @@ MonoBehaviour:
   focalPoint: {fileID: 1512444859}
   defaultRotation: {x: 0, y: 0, z: 0, w: 0}
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
+  tiltAngle: 15
+  tiltSpeed: 5
   shootForce: 9000
 --- !u!54 &1099425659
 Rigidbody:
@@ -2730,7 +2732,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1099425656}
   - {fileID: 1810345610}
   - {fileID: 320815873}
   - {fileID: 1189561304}
@@ -3293,6 +3294,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 668350800}
+  - {fileID: 1099425656}
   - {fileID: 1866689110}
   - {fileID: 1512444859}
   - {fileID: 487305012}
