@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -23,12 +26,15 @@ public class SpawnManager : MonoBehaviour
     public float bulletoffset3;
     public GameObject explosionParticle;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
 
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -46,53 +52,141 @@ public class SpawnManager : MonoBehaviour
         {
             spawnInterval = 3f;
         }
+
+
     }
-    void SpawnEnemy()
+
+    async void SpawnEnemy()
     {
+        if (gameManager.isGameOver == true)
+        {
+            return;
+        }
         float randPositionX = Random.Range(spawnRandomRange, -spawnRandomRange);
         float randPositionX2 = Random.Range(spawnRandomRange, -spawnRandomRange);
-        float randEnemy = Random.Range(0, 3);
+
+        float randEnemy = 0;// Random.Range(0, 3);
         if (gameManager.GetScore() > 33) { randEnemy += 3; }
 
 
 
         if (randEnemy == 0)
         {
-            GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+            randPositionX -= 30;
 
-            Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+            for (int i = 0; i < 3; i++)
+            {
+                randPositionX = randPositionX + 15;
+                if (randPositionX > spawnRandomRange)
+                {
+                    break;
+                }
+                GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+                Destroy(Enemy, 5);
+            }
+            randPositionX -= 30;
+            if (randPositionX < -30)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    randPositionX = randPositionX - 15;
+                    if (randPositionX < -spawnRandomRange)
+                    {
+                        break;
+                    }
+                    GameObject Enemy = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+                    Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+                    Destroy(Enemy, 5);
+                }
+            }
         }
         else if (randEnemy == 1)
         {
             GameObject Enemy = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
-
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+            if (randPositionX > 0)
+            {
+                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 2000);
+            }
+
+            if (randPositionX < 0)
+            {
+
+                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 2000);
+            }
+            Destroy(Enemy, 5);
         }
         else if (randEnemy == 2)
         {
             GameObject Enemy = Instantiate(enemyPrefab3, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
 
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+            Destroy(Enemy, 5);
         }
         else if (randEnemy == 3)
         {
-            GameObject Enemy2 = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+            randPositionX -= 30;
 
-            Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+            for (int i = 0; i < 3; i++)
+            {
+                randPositionX = randPositionX + 15;
+                if (randPositionX > spawnRandomRange)
+                {
+                    break;
+                }
+                GameObject Enemy2 = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+                Destroy(Enemy2, 5);
+            }
+            randPositionX -= 30;
+            if (randPositionX < -30)
+            {
+
+            }
+            else
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    randPositionX = randPositionX - 15;
+                    if (randPositionX < -spawnRandomRange)
+                    {
+                        break;
+                    }
+                    GameObject Enemy2 = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+                    Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+                    Destroy(Enemy2, 5);
+                }
+            }
+
             GameObject Enemy = Instantiate(enemyPrefab4, new Vector3(spawnPoint.position.x + randPositionX2, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
             bulletoffset3 = Random.Range(-45f, 45f);
             GameObject bullet1 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset3, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
             bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
             Destroy(bullet1, 5);
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 7000);
+            Destroy(Enemy, 5);
+
             if (gameManager.GetScore() > 66)
             {
                 Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 9000);
                 bulletoffset = Random.Range(-45f, 45f);
                 bulletoffset2 = Random.Range(-45f, 45f);
                 GameObject bullet3 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
-                bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
-                Destroy(bullet1, 5);
+                bullet3.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+                Destroy(bullet3, 5);
                 GameObject bullet2 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset2, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
                 bullet2.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
                 Destroy(bullet2, 5);
@@ -105,7 +199,10 @@ public class SpawnManager : MonoBehaviour
             GameObject Enemy2 = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
 
             Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 7000);
+            Destroy(Enemy, 5);
+            ;
             bulletoffset3 = Random.Range(-45f, 45f);
             GameObject bullet1 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset3, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
             bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
@@ -116,38 +213,63 @@ public class SpawnManager : MonoBehaviour
                 bulletoffset = Random.Range(-45f, 45f);
                 bulletoffset2 = Random.Range(-45f, 45f);
                 GameObject bullet3 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
-                bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
-                Destroy(bullet1, 5);
+                bullet3.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+                Destroy(bullet3, 5);
                 GameObject bullet2 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset2, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
                 bullet2.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
                 Destroy(bullet2, 5);
             }
+            if (randPositionX > 0)
+            {
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 2000);
+            }
+
+            if (randPositionX < 0)
+            {
+
+                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 500);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 1200);
+                await WaitForSecondsFunction();
+                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 2000);
+            }
+            Destroy(Enemy2, 5);
         }
         else if (randEnemy == 5)
         {
             GameObject Enemy = Instantiate(enemyPrefab6, new Vector3(spawnPoint.position.x + randPositionX2, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
 
             Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 7000);
-            GameObject Enemy2 = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
+            GameObject Enemy2 = Instantiate(enemyPrefab3, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
 
             Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
             bulletoffset3 = Random.Range(-45f, 45f);
             GameObject bullet1 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset3, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
             bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
             Destroy(bullet1, 5);
+            Destroy(Enemy, 5);
+            Destroy(Enemy2, 5);
             if (gameManager.GetScore() > 66)
             {
                 Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 9000);
                 bulletoffset = Random.Range(-45f, 45f);
                 bulletoffset2 = Random.Range(-45f, 45f);
                 GameObject bullet3 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
-                bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
-                Destroy(bullet1, 5);
+                bullet3.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+                Destroy(bullet3, 5);
                 GameObject bullet2 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset2, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
                 bullet2.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
                 Destroy(bullet2, 5);
             }
         }
+    }
+    async Task WaitForSecondsFunction()
+    {
+        await Task.Delay(1500);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -193,4 +315,5 @@ public class SpawnManager : MonoBehaviour
         }
 
     }
+
 }

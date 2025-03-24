@@ -1934,6 +1934,8 @@ MonoBehaviour:
   focalPoint: {fileID: 1512444859}
   defaultRotation: {x: 0, y: 0, z: 0, w: 0}
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
+  tiltAngle: 15
+  tiltSpeed: 5
   shootForce: 9000
 --- !u!54 &1099425659
 Rigidbody:
@@ -3291,8 +3293,8 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1099425656}
   - {fileID: 668350800}
+  - {fileID: 1099425656}
   - {fileID: 1866689110}
   - {fileID: 1512444859}
   - {fileID: 487305012}

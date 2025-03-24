@@ -16,10 +16,12 @@ public class PlayerController : MonoBehaviour
     public Quaternion defaultRotation;
     private Vector3 defaultPosition;
     public GameObject explosionParticle;
+    public float tiltAngle = 15f; // Maximum tilt angle
+    public float tiltSpeed = 5f;  // How quickly it tilts
 
     private AudioManager audioManager;
     private bool isMoving = false;
-
+    private float fixedY;
     public float shootForce = 9000f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,21 +29,29 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         defaultPosition = transform.position - focalPoint.position;
+        fixedY = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-      
+        
         // Get horizontal input (A/D or Arrow keys)
         moveDirection = Input.GetAxis("Horizontal");
-        
+
         // Move the character left/right
-        transform.Translate(Vector3.right * moveDirection * moveSpeed * Time.deltaTime);
+        transform.position = new Vector3(
+          transform.position.x + moveDirection * moveSpeed * Time.deltaTime,
+          fixedY,
+          transform.position.z
+      );
+        float targetTilt = moveDirection * -tiltAngle;
+        Quaternion targetRotation = Quaternion.Euler(0, 0, targetTilt);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * tiltSpeed);
 
         //This is the logic for if the player is moving
         //Turns on/off the moving sfx
-        if(moveDirection != 0 && !isMoving)
+        if (moveDirection != 0 && !isMoving)
         {
             isMoving = true;
             if (AudioManager.instance != null)
@@ -58,18 +68,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //horizontal = Input.GetAxis("Mouse X");
-        //vertical = Input.GetAxis("Mouse Y");
-
-        //if (Input.GetMouseButton(1)) //0 - Left Click , 1 - Right Click 2- middle click
-        //{
-        //    // transform.Rotate(Vector3.up, horizontal * Time.deltaTime * MovementSpeed);
-        //    // transform.Rotate(-1 * Vector3.right, vertical * Time.deltaTime * MovementSpeed);
-        //    player.AddRelativeTorque(-1 * vertical * TurnTorque, horizontal * TurnTorque, 0);
-        //}
-        //if(Input.GetMouseButton(2)) {
-        //    transform.rotation = defaultRotation;
-        //}
 
 
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
@@ -80,10 +78,11 @@ public class PlayerController : MonoBehaviour
                 AudioManager.instance.PlaySound(AudioManager.instance.bulletClip);
             }
 
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
+                GameObject bullet = Instantiate(bulletPrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
 
-            bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward *shootForce);
-            Destroy(bullet, 5);
+                bullet.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+                Destroy(bullet, 5);
+            
         }
         if (transform.position.x > 42)
         {
