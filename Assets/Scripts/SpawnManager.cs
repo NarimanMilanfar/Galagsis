@@ -143,6 +143,10 @@ public class SpawnManager : MonoBehaviour
             for (int i = 0; i < 3; i++)
             {
                 randPositionX = randPositionX + 15;
+                if (randPositionX > spawnRandomRange)
+                {
+                    break;
+                }
                 GameObject Enemy2 = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
                 Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
                 Destroy(Enemy2, 5);
@@ -157,6 +161,10 @@ public class SpawnManager : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     randPositionX = randPositionX - 15;
+                    if (randPositionX < -spawnRandomRange)
+                    {
+                        break;
+                    }
                     GameObject Enemy2 = Instantiate(enemyPrefab1, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
                     Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
                     Destroy(Enemy2, 5);
