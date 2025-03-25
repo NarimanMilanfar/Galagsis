@@ -182,11 +182,13 @@ public class GameManager : MonoBehaviour
     public void SetX2Active()
     {
         multiplier2.gameObject.SetActive(true);
+        multiplier2.DOFade(1, 0.5f);
     }
 
     public void SetX3Active()
     {
         multiplier3.gameObject.SetActive(true);
+        multiplier3.DOFade(1, 0.5f);
     }
 
     public void SetX2Inactive()
@@ -205,6 +207,14 @@ public class GameManager : MonoBehaviour
         });
     }
 
+    public void EnemyHitObstacle()
+    {
+        Debug.Log("Enemy hit obstacle. Resetting multipliers.");
+        ResetRowCount();
+        SetX2Inactive();
+        SetX3Inactive();
+    }
+
 
     public void HealthBoost(int amount)
     {
@@ -213,7 +223,7 @@ public class GameManager : MonoBehaviour
         UpdateHealthUI();
         Debug.Log("Health Boost! Current Health: " + health);
     }
-  
+
 
     void UpdateScoreUI()
     {
