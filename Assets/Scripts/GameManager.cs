@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,6 +42,11 @@ public class GameManager : MonoBehaviour
     public int rowCount;
     public Image multiplier2;
     public Image multiplier3;
+    // For Level Up Screen
+    public GameObject levelUpUI;
+    private bool isLevelingUp = false;
+    private int currentLevel = 1;
+
 
     void Awake()
     {
@@ -113,13 +119,24 @@ public class GameManager : MonoBehaviour
         if (score > 33 && score <= 66)
         {
             image6.gameObject.SetActive(true);
-
             image5.gameObject.SetActive(false);
+
+            if (currentLevel < 2 && !isLevelingUp)
+            {
+                StartCoroutine(LevelUpSequence(2));
+            }
+
         }
         // Level 3
         if (score > 66)
         {
             levelup();
+
+            if (currentLevel < 3 && !isLevelingUp)
+            {
+                StartCoroutine(LevelUpSequence(3));
+            }
+
         }
 
         if (scoreUI >= 100)
@@ -362,6 +379,44 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.PlayGameOverMusic(AudioManager.instance.victoryClip);
         }
     }
+
+    public IEnumerator LevelUpSequence(int nextLevel)
+    {
+        isLevelingUp = true;
+        currentLevel = nextLevel;
+
+        // Play level-up sound
+        if (AudioManager.instance != null && AudioManager.instance.levelUpClip != null)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.levelUpClip);
+        }
+
+        // Shake the camera
+        CameraShake.Shake(0.5f, 1f);
+
+        // Show level-up UI
+        levelUpUI.SetActive(true);
+        // levelUpUI.GetComponent<UnityEngine.UI.Text>().text = $"Level {nextLevel}!";
+
+        yield return new WaitForSeconds(2f);
+
+        levelUpUI.SetActive(false);
+
+        // Apply changes per level
+        if (nextLevel == 2 && isPlayer1)
+        {
+            Destroy(player);
+            player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            isPlayer1 = false;
+        }
+        else if (nextLevel == 3)
+        {
+            levelup();
+        }
+
+        isLevelingUp = false;
+    }
+
 
 
 }
