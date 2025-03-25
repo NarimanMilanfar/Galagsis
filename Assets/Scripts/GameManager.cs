@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
             image6.gameObject.SetActive(true);
             image5.gameObject.SetActive(false);
 
+            score = Mathf.Clamp(score, 33, 100);
+
             if (currentLevel < 2 && !isLevelingUp)
             {
                 StartCoroutine(LevelUpSequence(2));
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
         if (score > 66)
         {
             levelup();
+            score = Mathf.Clamp(score, 66, 100);
 
             if (currentLevel < 3 && !isLevelingUp)
             {
@@ -173,12 +176,31 @@ public class GameManager : MonoBehaviour
 
         score += amount;
         scoreUI += amount;
+
+        if (currentLevel == 1)
+        {
+            score = Mathf.Clamp(score, 0, 100);
+            scoreUI = Mathf.Clamp(scoreUI, 0, 100);
+        }
+        else if (currentLevel == 2)
+        {
+            score = Mathf.Clamp(score, 33, 100);
+            scoreUI = Mathf.Clamp(scoreUI, 33, 100);
+        }
+        else if (currentLevel == 3)
+        {
+            score = Mathf.Clamp(score, 67, 100);
+            scoreUI = Mathf.Clamp(scoreUI, 67, 100);
+        }
+
         UpdateScoreUI();
 
         if (amount > 0)
         {
             Debug.Log("Score increased by: " + amount);
-        } else {
+        }
+        else
+        {
             Debug.Log("Score decreased by: " + amount);
         }
     }
@@ -299,19 +321,15 @@ public class GameManager : MonoBehaviour
     }
     public void levelup()
     {
-
-
         if (score > 66)
         {
             image7.gameObject.SetActive(true);
-
             image6.gameObject.SetActive(false);
             image5.gameObject.SetActive(false);
         }
         else if (score <= 33)
         {
             image5.gameObject.SetActive(true);
-
             image6.gameObject.SetActive(false);
             image7.gameObject.SetActive(false);
         }
