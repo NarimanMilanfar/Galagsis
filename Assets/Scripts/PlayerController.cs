@@ -103,6 +103,9 @@ public class PlayerController : MonoBehaviour
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
             Destroy(collision.gameObject);
             GameManager.Instance.DecreaseHealth(3);
+            GameManager.Instance.ResetRowCount();
+            GameManager.Instance.SetX2Inactive();
+            GameManager.Instance.SetX3Inactive();
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {

@@ -2,7 +2,7 @@
 ## Game Project for UBC Course COSC 416  
 
 ### Assets  
-Assets downloaded from the Unity Asset Store.  
+Assets downloaded from the Unity Asset Store.
 
 ### Nariman Milanfar's Workload  
 
@@ -27,3 +27,9 @@ Assets downloaded from the Unity Asset Store.
 - **Enemy Spawn Stop:** Stop enemy spawning after the game is over or won.  
 - **Game Over & Game Won State:** Implementing conditions to determine when the game is over or won, with appropriate state transitions.
 
+### Salma Vikha Ainindita's Workload  
+
+- Reset/Restart Functionality (PR #1)
+- Main Menu (PR #3)
+- Camera Shake with level up screen (PR #10)
+- Added some assets, images, and sound effects

@@ -35,6 +35,23 @@ public class Shoot : MonoBehaviour
             Destroy(collision.gameObject);
             Destroy(explosion, 2);
             GameManager.Instance.AddScore(1);
+            GameManager.Instance.AddRowCount();
+
+            if (GameManager.Instance.rowCount > 2)
+            {
+                Debug.Log("x2 Multiplier Achieved!");
+                GameManager.Instance.AddScore(1);
+                 GameManager.Instance.SetX2Active();
+            }
+
+            if (GameManager.Instance.rowCount > 5)
+            {
+                Debug.Log("x3 Multiplier Achieved!");
+                GameManager.Instance.AddScore(2);
+                GameManager.Instance.SetX2Inactive();
+                GameManager.Instance.SetX3Active();
+            }
+
 
             TrySpawnHealthPickup(transform.position);
 
