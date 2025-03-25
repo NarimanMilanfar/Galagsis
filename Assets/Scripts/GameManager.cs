@@ -317,7 +317,8 @@ public class GameManager : MonoBehaviour
         // Shake the camera
         CameraShake.Shake(0.5f, 1f); // duration, strength
 
-
+        // Play level up sound
+        AudioManager.instance.PlaySound(AudioManager.instance.levelUpClip);
 
         // Show level-up UI
         levelUpUI.SetActive(true);
