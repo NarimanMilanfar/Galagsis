@@ -7,11 +7,10 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            GameManager.Instance.AddScore(-2);
+
             Destroy(collision.gameObject);
-            GameManager.Instance.ResetRowCount();
-            GameManager.Instance.SetX2Inactive();
-            GameManager.Instance.SetX3Inactive();
-            // GameManager.Instance.EnemyHitObstacle();
+            GameManager.Instance.ResetMultiplier();
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
