@@ -141,6 +141,13 @@ public class GameManager : MonoBehaviour
         rowCount = 0;
     }
 
+    public void ResetMultiplier()
+    {
+        ResetRowCount();
+        SetX2Inactive();
+        SetX3Inactive();
+    }
+
     public void AddScore(int amount)
     {
         //This is how I stop the game from running once it ends
