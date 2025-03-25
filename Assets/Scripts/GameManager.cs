@@ -40,18 +40,11 @@ public class GameManager : MonoBehaviour
 
     private AudioManager audioManager;
 
-    // For Level Up Screen
-    public GameObject levelUpUI; // Assign this in the Inspector
-    private bool isLevelingUp = false;
-    private int currentLevel = 1;
-
-
-
-
     public int rowCount;
     public Image multiplier2;
     public Image multiplier3;
     // For Level Up Screen
+
     public GameObject levelUpUI;
     private bool isLevelingUp = false;
     private int currentLevel = 1;
@@ -431,9 +424,5 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(LevelUpSequence(score == 33 ? 2 : 3));
     }
-
-
-
-
 }
 
