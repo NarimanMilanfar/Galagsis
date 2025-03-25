@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 20f; // Movement speed
+    public float moveSpeed = 25f; // Movement speed
     private float moveDirection;
     private float horizontal;
     private float vertical;
@@ -35,9 +35,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         // Get horizontal input (A/D or Arrow keys)
-        moveDirection = Input.GetAxis("Horizontal");
+        moveDirection = Input.GetAxisRaw("Horizontal");
 
         // Move the character left/right
         transform.position = new Vector3(
@@ -103,6 +102,9 @@ public class PlayerController : MonoBehaviour
             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
             Destroy(collision.gameObject);
             GameManager.Instance.DecreaseHealth(3);
+            GameManager.Instance.ResetRowCount();
+            GameManager.Instance.SetX2Inactive();
+            GameManager.Instance.SetX3Inactive();
         }
         if (collision.gameObject.CompareTag("Obstacle"))
         {
