@@ -150,6 +150,13 @@ public class GameManager : MonoBehaviour
         score += amount;
         scoreUI += amount;
         UpdateScoreUI();
+
+        if (amount > 0)
+        {
+            Debug.Log("Score increased by: " + amount);
+        } else {
+            Debug.Log("Score decreased by: " + amount);
+        }
     }
     public void DecreaseHealth(int amount)
     {
