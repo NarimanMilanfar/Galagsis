@@ -306,8 +306,9 @@ public class GameManager : MonoBehaviour
             image7.gameObject.SetActive(true);
 
             image6.gameObject.SetActive(false);
+            image5.gameObject.SetActive(false);
         }
-        else
+        else if (score <= 33)
         {
             image5.gameObject.SetActive(true);
 

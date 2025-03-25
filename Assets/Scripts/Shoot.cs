@@ -61,10 +61,10 @@ public class Shoot : MonoBehaviour
 
     private void TrySpawnHealthPickup(Vector3 spawnPosition)
     {
-        if ((Time.time - lastSpawnTime) < spawnCooldown)
-        {
-            return; 
-        }
+        // if ((Time.time - lastSpawnTime) < spawnCooldown)
+        // {
+        //     return; 
+        // }
 
         float randomValue = Random.value;
 
