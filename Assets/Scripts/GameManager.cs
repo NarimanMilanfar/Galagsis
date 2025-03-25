@@ -264,7 +264,7 @@ public class GameManager : MonoBehaviour
            {
                scoreText.transform.DOScale(1f, 0.1f);
            });
-            scoreText.text = "Score: " + scoreUI; // Method to constantly update UI text
+            scoreText.text = "Score: " + score; // Method to constantly update UI text
         }
     }
     void UpdateHealthUI()

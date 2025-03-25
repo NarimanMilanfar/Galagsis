@@ -4,7 +4,7 @@ public class Shoot : MonoBehaviour
 {
     public GameObject explosionParticle;
     public GameObject healthPickupPrefab;
-    public float healthPickupChance = 0.05f;
+    public float healthPickupChance = 0.1f;
     private float lastSpawnTime = 0f;
     private float spawnCooldown = 7f;
 
