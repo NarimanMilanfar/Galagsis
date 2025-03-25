@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public bool isGameOverMusicPlaying = false;
 
-    [Header ("Audio Sources")]
+    [Header("Audio Sources")]
 
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource sfxSource;
@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip victoryClip;
     public AudioClip rocketClip;
     public AudioClip buttonClip;
+
+
 
     private void Awake()
     {
@@ -46,7 +48,7 @@ public class AudioManager : MonoBehaviour
         Debug.Log("PlayBackgroundMusic");
         if (musicSource != null && backgroundClip != null)
         {
-            if(musicSource.isPlaying)
+            if (musicSource.isPlaying)
             {
                 musicSource.Stop();
             }
@@ -69,7 +71,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound (AudioClip clip)
+    public void PlaySound(AudioClip clip)
     {
         if (sfxSource != null && clip != null)
         {

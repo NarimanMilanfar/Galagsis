@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public TimerManager timerManager;
-    private int score = 0;
+    public int score { get; private set; } = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
@@ -37,6 +38,13 @@ public class GameManager : MonoBehaviour
     public Button backToMainMenuButton;
 
     private AudioManager audioManager;
+    // For Level Up Screen
+    public GameObject levelUpUI; // Assign this in the Inspector
+    private bool isLevelingUp = false;
+    private int currentLevel = 1;
+
+
+
 
     void Awake()
     {
@@ -85,7 +93,7 @@ public class GameManager : MonoBehaviour
         // {
         //     return;
         // }
-        
+
         if (score > 33 && isPlayer1)
         {
             Destroy(player);
@@ -133,7 +141,7 @@ public class GameManager : MonoBehaviour
         //Just remove this line if you want to keep decreasing health after the game ends
         if (isGameOver) return;
 
-        
+
         health -= amount;
         UpdateHealthUI();
 
@@ -157,12 +165,12 @@ public class GameManager : MonoBehaviour
 
     public void HealthBoost(int amount)
     {
-        health += amount; 
-        health = Mathf.Clamp(health, 0, 100); 
-        UpdateHealthUI();  
+        health += amount;
+        health = Mathf.Clamp(health, 0, 100);
+        UpdateHealthUI();
         Debug.Log("Health Boost! Current Health: " + health);
     }
-  
+
 
     void UpdateScoreUI()
     {
@@ -271,7 +279,7 @@ public class GameManager : MonoBehaviour
     public void GameWon()
     {
         // Avoid overlap status or images
-        if (image4.gameObject.activeSelf || isGameOver==true)
+        if (image4.gameObject.activeSelf || isGameOver == true)
         {
             // do nothing (skip win cause already game over)
             return;
@@ -301,6 +309,50 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.PlayGameOverMusic(AudioManager.instance.victoryClip);
         }
     }
+
+    public IEnumerator LevelUpSequence(int nextLevel)
+    {
+        isLevelingUp = true;
+
+        // Shake the camera
+        CameraShake.Shake(0.5f, 1f); // duration, strength
+
+
+
+        // Show level-up UI
+        levelUpUI.SetActive(true);
+        // levelUpUI.GetComponent<UnityEngine.UI.Text>().text = $"Level {nextLevel}!";
+
+        yield return new WaitForSeconds(2f);
+
+        levelUpUI.SetActive(false);
+
+        currentLevel = nextLevel;
+        isLevelingUp = false;
+
+        if (nextLevel == 2 && isPlayer1)
+        {
+            Destroy(player);
+            player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
+            isPlayer1 = false;
+
+            image6.gameObject.SetActive(true);
+            image5.gameObject.SetActive(false);
+        }
+        else if (nextLevel == 3)
+        {
+            levelup(); // Call your original level 3 method
+        }
+    }
+
+    public void TriggerLevelUp()
+    {
+        if (isLevelingUp) return;
+
+        StartCoroutine(LevelUpSequence(score == 33 ? 2 : 3));
+    }
+
+
 
 
 }

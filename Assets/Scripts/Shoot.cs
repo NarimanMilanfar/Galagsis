@@ -28,7 +28,7 @@ public class Shoot : MonoBehaviour
                 AudioManager.instance.PlaySound(AudioManager.instance.explosionClip);
             }
 
-             GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
+            GameObject explosion = Instantiate(explosionParticle, transform.position, transform.rotation);
 
 
             Destroy(gameObject);
@@ -37,6 +37,13 @@ public class Shoot : MonoBehaviour
             GameManager.Instance.AddScore(1);
 
             TrySpawnHealthPickup(transform.position);
+
+            // Check for level-up trigger
+            if (GameManager.Instance.score == 33 || GameManager.Instance.score == 66)
+            {
+                GameManager.Instance.TriggerLevelUp();
+            }
+
         }
     }
 
