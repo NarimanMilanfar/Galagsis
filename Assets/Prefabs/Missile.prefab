@@ -152,6 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
   healthPickupPrefab: {fileID: 2002352810588461305, guid: 52f7253b2928f4046866010a67364ef2, type: 3}
+  healthPickupChance: 0.02
+  timerManager: {fileID: 9177733996381540889, guid: bb4d7fe5c484d491aaa4f316247e3652, type: 3}
 --- !u!1 &1183623513585936513
 GameObject:
   m_ObjectHideFlags: 0

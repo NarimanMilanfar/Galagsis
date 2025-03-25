@@ -4,7 +4,9 @@ public class Shoot : MonoBehaviour
 {
     public GameObject explosionParticle;
     public GameObject healthPickupPrefab;
-    public float healthPickupChance = 0.1f;
+    public float healthPickupChance = 0.05f;
+    private float lastSpawnTime = 0f;
+    private float spawnCooldown = 7f;
 
     private AudioManager audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,7 +43,7 @@ public class Shoot : MonoBehaviour
             {
                 Debug.Log("x2 Multiplier Achieved!");
                 GameManager.Instance.AddScore(1);
-                 GameManager.Instance.SetX2Active();
+                GameManager.Instance.SetX2Active();
             }
 
             if (GameManager.Instance.rowCount > 5)
@@ -59,6 +61,11 @@ public class Shoot : MonoBehaviour
 
     private void TrySpawnHealthPickup(Vector3 spawnPosition)
     {
+        if ((Time.time - lastSpawnTime) < spawnCooldown)
+        {
+            return; 
+        }
+
         float randomValue = Random.value;
 
         if (randomValue <= healthPickupChance)
