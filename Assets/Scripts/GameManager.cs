@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public TimerManager timerManager;
-    private int score = 0;
+    public int score { get; private set; } = 0;
     private int health = 100;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
@@ -39,10 +39,12 @@ public class GameManager : MonoBehaviour
     public Button backToMainMenuButton;
 
     private AudioManager audioManager;
+
     public int rowCount;
     public Image multiplier2;
     public Image multiplier3;
     // For Level Up Screen
+
     public GameObject levelUpUI;
     private bool isLevelingUp = false;
     private int currentLevel = 1;
@@ -416,16 +418,12 @@ public class GameManager : MonoBehaviour
     public IEnumerator LevelUpSequence(int nextLevel)
     {
         isLevelingUp = true;
-        currentLevel = nextLevel;
-
-        // Play level-up sound
-        if (AudioManager.instance != null && AudioManager.instance.levelUpClip != null)
-        {
-            AudioManager.instance.PlaySound(AudioManager.instance.levelUpClip);
-        }
 
         // Shake the camera
-        CameraShake.Shake(0.5f, 1f);
+        CameraShake.Shake(0.5f, 1f); // duration, strength
+
+        // Play level up sound
+        AudioManager.instance.PlaySound(AudioManager.instance.levelUpClip);
 
         // Show level-up UI
         levelUpUI.SetActive(true);
@@ -435,22 +433,29 @@ public class GameManager : MonoBehaviour
 
         levelUpUI.SetActive(false);
 
-        // Apply changes per level
+        currentLevel = nextLevel;
+        isLevelingUp = false;
+
         if (nextLevel == 2 && isPlayer1)
         {
             Destroy(player);
             player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
+
+            image6.gameObject.SetActive(true);
+            image5.gameObject.SetActive(false);
         }
         else if (nextLevel == 3)
         {
-            levelup();
+            levelup(); // Call your original level 3 method
         }
-
-        isLevelingUp = false;
     }
 
+    public void TriggerLevelUp()
+    {
+        if (isLevelingUp) return;
 
-
+        StartCoroutine(LevelUpSequence(score == 33 ? 2 : 3));
+    }
 }
 
