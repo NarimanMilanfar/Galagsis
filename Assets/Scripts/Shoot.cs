@@ -5,6 +5,9 @@ public class Shoot : MonoBehaviour
     public GameObject explosionParticle;
     public GameObject healthPickupPrefab;
     public float healthPickupChance = 0.1f;
+    private float lastSpawnTime = 0f;
+    private float spawnCooldown = 7f;
+    [SerializeField] private float destroyDelay = 1.9f;
 
     private AudioManager audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,14 +42,12 @@ public class Shoot : MonoBehaviour
 
             if (GameManager.Instance.rowCount > 2)
             {
-                Debug.Log("x2 Multiplier Achieved!");
                 GameManager.Instance.AddScore(1);
-                 GameManager.Instance.SetX2Active();
+                GameManager.Instance.SetX2Active();
             }
 
             if (GameManager.Instance.rowCount > 5)
             {
-                Debug.Log("x3 Multiplier Achieved!");
                 GameManager.Instance.AddScore(2);
                 GameManager.Instance.SetX2Inactive();
                 GameManager.Instance.SetX3Active();
@@ -66,13 +67,18 @@ public class Shoot : MonoBehaviour
 
     private void TrySpawnHealthPickup(Vector3 spawnPosition)
     {
+        if ((Time.time - lastSpawnTime) < spawnCooldown)
+        {
+            return; 
+        }
+
         float randomValue = Random.value;
 
         if (randomValue <= healthPickupChance)
         {
             GameObject healthPickup = Instantiate(healthPickupPrefab, transform.position, transform.rotation);
             healthPickup.transform.localScale = new Vector3(0.07f, 0.07f, 0.07f);
-            Destroy(healthPickup, 1f);
+            Destroy(healthPickup, destroyDelay);
         }
     }
 }
