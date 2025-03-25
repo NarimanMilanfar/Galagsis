@@ -54,6 +54,13 @@ public class Shoot : MonoBehaviour
 
 
             TrySpawnHealthPickup(transform.position);
+
+            // Check for level-up trigger
+            if (GameManager.Instance.score == 33 || GameManager.Instance.score == 66)
+            {
+                GameManager.Instance.TriggerLevelUp();
+            }
+
         }
     }
 
