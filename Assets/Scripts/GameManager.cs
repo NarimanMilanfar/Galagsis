@@ -187,12 +187,12 @@ public class GameManager : MonoBehaviour
         else if (currentLevel == 2)
         {
             score = Mathf.Clamp(score, 33, 100);
-            scoreUI = Mathf.Clamp(scoreUI, 33, 100);
+            scoreUI = Mathf.Clamp(scoreUI, 0, 100);
         }
         else if (currentLevel == 3)
         {
             score = Mathf.Clamp(score, 67, 100);
-            scoreUI = Mathf.Clamp(scoreUI, 67, 100);
+            scoreUI = Mathf.Clamp(scoreUI, 0, 100);
         }
 
         UpdateScoreUI();
@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
            {
                scoreText.transform.DOScale(1f, 0.1f);
            });
-            scoreText.text = "Score: " + score; // Method to constantly update UI text
+            scoreText.text = "Score: " + scoreUI; // Method to constantly update UI text
         }
     }
     void UpdateHealthUI()
