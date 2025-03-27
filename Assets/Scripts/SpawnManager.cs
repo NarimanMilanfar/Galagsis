@@ -104,27 +104,49 @@ public class SpawnManager : MonoBehaviour
         {
             GameObject Enemy = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
             Instantiate(spawnRingPrefab, Enemy.transform.position, Quaternion.Euler(0, 0, 0));
-            Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
-            if (randPositionX > 0)
+
+            if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
-                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 500);
-                await WaitForSecondsFunction();
-                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 1200);
-                await WaitForSecondsFunction();
-                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 2000);
+                rb.AddForce(spawnPoint.forward * 6000);
+
+                if (randPositionX > 0)
+                {
+                    rb.AddForce(spawnPoint.right * 500);
+                    await WaitForSecondsFunction();
+
+                    if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rb2))
+                    {
+                        rb2.AddForce(-spawnPoint.right * 1200);
+                    }
+                    await WaitForSecondsFunction();
+
+                    if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rb3))
+                    {
+                        rb3.AddForce(spawnPoint.right * 2000);
+                    }
+                }
+
+                if (randPositionX < 0)
+                {
+                    rb.AddForce(-spawnPoint.right * 500);
+                    await WaitForSecondsFunction();
+
+                    if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rb2))
+                    {
+                        rb2.AddForce(spawnPoint.right * 1200);
+                    }
+                    await WaitForSecondsFunction();
+
+                    if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rb3))
+                    {
+                        rb3.AddForce(-spawnPoint.right * 2000);
+                    }
+                }
             }
 
-            if (randPositionX < 0)
-            {
-
-                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 500);
-                await WaitForSecondsFunction();
-                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 1200);
-                await WaitForSecondsFunction();
-                Enemy.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 2000);
-            }
             Destroy(Enemy, 5);
         }
+
         else if (randEnemy == 2)
         {
             GameObject Enemy = Instantiate(enemyPrefab3, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
@@ -191,47 +213,98 @@ public class SpawnManager : MonoBehaviour
             GameObject Enemy2 = Instantiate(enemyPrefab2, new Vector3(spawnPoint.position.x + randPositionX, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
             Instantiate(spawnRingPrefab, Enemy2.transform.position, Quaternion.Euler(0, 0, 0));
 
-            Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 6000);
+            if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rbEnemy2))
+            {
+                rbEnemy2.AddForce(spawnPoint.forward * 6000);
+            }
 
-            Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 7000);
+            if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rbEnemy))
+            {
+                rbEnemy.AddForce(spawnPoint.forward * 7000);
+            }
+
             Destroy(Enemy, 5);
-            ;
+
             bulletoffset3 = Random.Range(-45f, 45f);
             GameObject bullet1 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset3, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
-            bullet1.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+            if (bullet1.TryGetComponent<Rigidbody>(out Rigidbody bulletRb1))
+            {
+                bulletRb1.AddForce(bulletSpawnRef.forward * shootForce);
+            }
             Destroy(bullet1, 5);
+
             if (gameManager.GetScore() > 66)
             {
-                Enemy.GetComponent<Rigidbody>().AddForce(spawnPoint.forward * 9000);
+                if (Enemy != null && Enemy.TryGetComponent<Rigidbody>(out Rigidbody rbBoost))
+                {
+                    rbBoost.AddForce(spawnPoint.forward * 9000);
+                }
+
                 bulletoffset = Random.Range(-45f, 45f);
                 bulletoffset2 = Random.Range(-45f, 45f);
+
                 GameObject bullet3 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
-                bullet3.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+                if (bullet3.TryGetComponent<Rigidbody>(out Rigidbody bulletRb3))
+                {
+                    bulletRb3.AddForce(bulletSpawnRef.forward * shootForce);
+                }
                 Destroy(bullet3, 5);
+
                 GameObject bullet2 = Instantiate(bulletPrefab, new Vector3(bulletSpawnRef.position.x + bulletoffset2, bulletSpawnRef.position.y, bulletSpawnRef.position.z), bulletSpawnRef.rotation);
-                bullet2.GetComponent<Rigidbody>().AddForce(bulletSpawnRef.forward * shootForce);
+                if (bullet2.TryGetComponent<Rigidbody>(out Rigidbody bulletRb2))
+                {
+                    bulletRb2.AddForce(bulletSpawnRef.forward * shootForce);
+                }
                 Destroy(bullet2, 5);
             }
+
             if (randPositionX > 0)
             {
-                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 500);
+                if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rb2))
+                {
+                    rb2.AddForce(spawnPoint.right * 500);
+                }
+
                 await WaitForSecondsFunction();
-                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 1200);
+
+                if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rb3))
+                {
+                    rb3.AddForce(-spawnPoint.right * 1200);
+                }
+
                 await WaitForSecondsFunction();
-                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 2000);
+
+                if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rb4))
+                {
+                    rb4.AddForce(spawnPoint.right * 2000);
+                }
             }
 
             if (randPositionX < 0)
             {
+                if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rb2))
+                {
+                    rb2.AddForce(-spawnPoint.right * 500);
+                }
 
-                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 500);
                 await WaitForSecondsFunction();
-                Enemy2.GetComponent<Rigidbody>().AddForce(spawnPoint.right * 1200);
+
+                if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rb3))
+                {
+                    rb3.AddForce(spawnPoint.right * 1200);
+                }
+
                 await WaitForSecondsFunction();
-                Enemy2.GetComponent<Rigidbody>().AddForce(-spawnPoint.right * 2000);
+
+                if (Enemy2 != null && Enemy2.TryGetComponent<Rigidbody>(out Rigidbody rb4))
+                {
+                    rb4.AddForce(-spawnPoint.right * 2000);
+                }
             }
+
             Destroy(Enemy2, 5);
         }
+
         else if (randEnemy == 5)
         {
             GameObject Enemy = Instantiate(enemyPrefab6, new Vector3(spawnPoint.position.x + randPositionX2, spawnPoint.position.y, spawnPoint.position.z), spawnPoint.rotation);
