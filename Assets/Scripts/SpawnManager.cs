@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     public Transform spawnPoint;
     public Transform focalPoint;
     public float speed = 3000f;
-    private float spawnRandomRange = 45f;
+    private float spawnRandomRange = 40f;
     private float spawnInterval = 5f;
     public GameManager gameManager;
     private float randEnemy;
