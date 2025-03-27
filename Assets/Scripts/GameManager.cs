@@ -427,9 +427,8 @@ public class GameManager : MonoBehaviour
 
         // Show level-up UI
         levelUpUI.SetActive(true);
-        // levelUpUI.GetComponent<UnityEngine.UI.Text>().text = $"Level {nextLevel}!";
-
-        yield return new WaitForSeconds(2f);
+        
+        yield return new WaitForSeconds(1f);
 
         levelUpUI.SetActive(false);
 
