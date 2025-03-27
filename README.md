@@ -33,3 +33,11 @@ Assets downloaded from the Unity Asset Store.
 - Main Menu (PR #3)
 - Camera Shake with level up screen (PR #10)
 - Added some assets, images, and sound effects
+
+
+### Madelyn DeGruchy's Workload
+- **Game Timer** Added functionality for the game timer
+- **Game Over & Game Won** Created GameOver and GameWon methods and disabled Score and Health depletion once game ends
+- **AudioManager** Created AudioManager and set up methods to play sound effects and background music
+- **Imported Audios** Imported CC0 Background Music, Game Over music, Game Won music, and SFX for the ship engine, buttons clicking on menu screens, shooting bullets, and collisions (enemy hits player, bullet hits player, bullet destroys enemy).
+- **Enemy Glow & Particle Circle** Added emmissive property to all enemy materials so they appear to "glow" or have lights on the wings. Also added a particle effect to create indicators behind where the enemy initially spawns.
