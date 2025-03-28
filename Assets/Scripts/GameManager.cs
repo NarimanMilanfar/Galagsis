@@ -205,14 +205,14 @@ public class GameManager : MonoBehaviour
 
         UpdateScoreUI();
 
-        if (amount > 0)
-        {
-            Debug.Log("Score increased by: " + amount);
-        }
-        else
-        {
-            Debug.Log("Score decreased by: " + amount);
-        }
+        // if (amount > 0)
+        // {
+        //     Debug.Log("Score increased by: " + amount);
+        // }
+        // else
+        // {
+        //     Debug.Log("Score decreased by: " + amount);
+        // }
     }
     public void DecreaseHealth(int amount)
     {
@@ -269,15 +269,6 @@ public class GameManager : MonoBehaviour
             multiplier3.gameObject.SetActive(false);
         });
     }
-
-    public void EnemyHitObstacle()
-    {
-        Debug.Log("Enemy hit obstacle. Resetting multipliers.");
-        ResetRowCount();
-        SetX2Inactive();
-        SetX3Inactive();
-    }
-
 
     public void HealthBoost(int amount)
     {

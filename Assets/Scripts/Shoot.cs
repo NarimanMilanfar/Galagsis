@@ -48,7 +48,7 @@ public class Shoot : MonoBehaviour
 
             if (GameManager.Instance.rowCount > 5)
             {
-                GameManager.Instance.AddScore(2);
+                GameManager.Instance.AddScore(1);
                 GameManager.Instance.SetX2Inactive();
                 GameManager.Instance.SetX3Active();
             }
