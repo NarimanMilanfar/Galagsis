@@ -444,6 +444,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -651
       objectReference: {fileID: 0}
+    - target: {fileID: 6775035353057201228, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -651
+      objectReference: {fileID: 0}
     - target: {fileID: 7584765886133577911, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
