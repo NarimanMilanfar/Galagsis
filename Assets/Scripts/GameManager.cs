@@ -30,7 +30,9 @@ public class GameManager : MonoBehaviour
     bool isPlayer1 = true;
     private int scoreUI;
 
-    public Image healthBar;
+    public Image healthBar; 
+
+    public TextMeshProUGUI highScoreText;
 
     //public TextMeshProUGUI healthText;
 
@@ -196,6 +198,7 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateScoreUI();
+        CheckHighScore();
 
         if (amount > 0)
         {
@@ -379,6 +382,8 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.instance.PlayGameOverMusic(AudioManager.instance.gameOverClip);
         }
+
+        CheckHighScore();
     }
 
     public void GameWon()
@@ -413,6 +418,23 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.instance.PlayGameOverMusic(AudioManager.instance.victoryClip);
         }
+
+        CheckHighScore();
+    }
+
+    public void CheckHighScore() 
+    {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+
+        UpdateHighScore();
+    }
+
+    public void UpdateHighScore()
+    {
+        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScore", 0)}";
     }
 
     public IEnumerator LevelUpSequence(int nextLevel)

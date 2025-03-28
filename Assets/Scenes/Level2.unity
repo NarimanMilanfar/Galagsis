@@ -275,6 +275,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6766976061424449703, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -651
+      objectReference: {fileID: 0}
     - target: {fileID: 7757381853037118802, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1633,6 +1637,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834395308}
   m_CullTransparentMesh: 1
+--- !u!114 &870048994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+  m_PrefabInstance: {fileID: 69019533}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &950769504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2040,7 @@ MonoBehaviour:
   player2: {fileID: 1523317472505394208, guid: 2b6510c9bf7e4a3408e4a4d002992ffb, type: 3}
   playerSpawn: {fileID: 1099425656}
   healthBar: {fileID: 1956334994}
+  highScoreText: {fileID: 870048994}
   isGameOver: 0
   restartButton: {fileID: 1956334996}
   backToMainMenuButton: {fileID: 1956334995}

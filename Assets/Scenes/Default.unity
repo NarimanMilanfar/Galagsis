@@ -1272,6 +1272,7 @@ MonoBehaviour:
   player2: {fileID: 1523317472505394208, guid: 2b6510c9bf7e4a3408e4a4d002992ffb, type: 3}
   playerSpawn: {fileID: 1099425656}
   healthBar: {fileID: 604037866}
+  highScoreText: {fileID: 1975820702290490505}
   isGameOver: 0
   restartButton: {fileID: 569537140}
   backToMainMenuButton: {fileID: 1316845311}
@@ -2984,6 +2985,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6128579929166075859, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
   m_PrefabInstance: {fileID: 1975820702290490503}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1975820702290490505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+  m_PrefabInstance: {fileID: 1975820702290490503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6542019797245518686
 PrefabInstance:
   m_ObjectHideFlags: 0
