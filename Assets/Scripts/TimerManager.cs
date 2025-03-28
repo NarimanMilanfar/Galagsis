@@ -43,6 +43,7 @@ public class TimerManager : MonoBehaviour
             }
             else
             {
+                gameManager.SetFinalTime(300 - timeLeft);
                 timeLeft = 0;
                 timerOn = false;
 
