@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private AudioManager audioManager;
     private bool isMoving = false;
     private float fixedY;
-    public float shootForce = 9000f;
+    public float shootForce = 20000f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

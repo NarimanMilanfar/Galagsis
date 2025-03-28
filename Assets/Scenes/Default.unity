@@ -1301,7 +1301,7 @@ MonoBehaviour:
   explosionParticle: {fileID: 6773314156750380427, guid: da6b548b542655a419e63ba7d8cd3add, type: 3}
   tiltAngle: 15
   tiltSpeed: 5
-  shootForce: 9000
+  shootForce: 20000
 --- !u!54 &1099425659
 Rigidbody:
   m_ObjectHideFlags: 0
