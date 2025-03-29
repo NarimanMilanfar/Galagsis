@@ -7,7 +7,7 @@ public class Shoot : MonoBehaviour
     public float healthPickupChance = 0.1f;
     private float lastSpawnTime = 0f;
     private float spawnCooldown = 7f;
-    [SerializeField] private float destroyDelay = 1.9f;
+    [SerializeField] private float destroyDelay = 2.5f;
 
     private AudioManager audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,7 +48,7 @@ public class Shoot : MonoBehaviour
 
             if (GameManager.Instance.rowCount > 5)
             {
-                GameManager.Instance.AddScore(2);
+                GameManager.Instance.AddScore(1);
                 GameManager.Instance.SetX2Inactive();
                 GameManager.Instance.SetX3Active();
             }

@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
 
     public Image healthBar;
 
+    public TextMeshProUGUI highScoreText;
+    private float finalTimeTaken;
+
     //public TextMeshProUGUI healthText;
 
     public bool isGameOver = false;
@@ -87,6 +90,11 @@ public class GameManager : MonoBehaviour
         if (multiplier2 != null)
         {
             multiplier2.gameObject.SetActive(false);
+        }
+
+        if (highScoreText != null)
+        {
+            highScoreText.gameObject.SetActive(false);
         }
 
         UpdateScoreUI();
@@ -197,14 +205,14 @@ public class GameManager : MonoBehaviour
 
         UpdateScoreUI();
 
-        if (amount > 0)
-        {
-            Debug.Log("Score increased by: " + amount);
-        }
-        else
-        {
-            Debug.Log("Score decreased by: " + amount);
-        }
+        // if (amount > 0)
+        // {
+        //     Debug.Log("Score increased by: " + amount);
+        // }
+        // else
+        // {
+        //     Debug.Log("Score decreased by: " + amount);
+        // }
     }
     public void DecreaseHealth(int amount)
     {
@@ -261,15 +269,6 @@ public class GameManager : MonoBehaviour
             multiplier3.gameObject.SetActive(false);
         });
     }
-
-    public void EnemyHitObstacle()
-    {
-        Debug.Log("Enemy hit obstacle. Resetting multipliers.");
-        ResetRowCount();
-        SetX2Inactive();
-        SetX3Inactive();
-    }
-
 
     public void HealthBoost(int amount)
     {
@@ -370,6 +369,7 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
         Debug.Log("Game Over");
+        SetFinalTime(300 - timerManager.timeLeft);
         timerManager.timerOn = false;
         timerText.text = "Game Over";
         timerManager.timeLeft = 0;
@@ -379,6 +379,8 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.instance.PlayGameOverMusic(AudioManager.instance.gameOverClip);
         }
+
+        CheckHighScore();
     }
 
     public void GameWon()
@@ -403,6 +405,7 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
         Debug.Log("Game Won");
+        SetFinalTime(300 - timerManager.timeLeft);
         timerManager.timerOn = false;
         timerText.text = "Game Won";
         timerManager.timeLeft = 0;
@@ -413,6 +416,46 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.instance.PlayGameOverMusic(AudioManager.instance.victoryClip);
         }
+
+        CheckHighScore();
+    }
+
+    public float GetFinalTime()
+    {
+        return finalTimeTaken;
+    }
+
+    public void SetFinalTime(float time)
+    {
+        finalTimeTaken = time;
+    }
+
+
+    public void CheckHighScore()
+    {
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        float highScoreTime = PlayerPrefs.GetFloat("HighScoreTime", 300);
+        float currentTimeTaken = GetFinalTime();
+        if (score >= highScore || (score >= 100 && currentTimeTaken < highScoreTime))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.SetFloat("HighScoreTime", currentTimeTaken);
+        }
+
+        UpdateHighScore();
+    }
+
+    public void UpdateHighScore()
+    {
+        // highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScore", 0)}";
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        float highScoreTime = PlayerPrefs.GetFloat("HighScoreTime", 300);
+
+        int minutes = Mathf.FloorToInt(highScoreTime / 60);
+        int seconds = Mathf.FloorToInt(highScoreTime % 60);
+
+        highScoreText.text = $"High Score: {highScore} Time: {minutes}:{seconds:D2}";
+        highScoreText.gameObject.SetActive(true);
     }
 
     public IEnumerator LevelUpSequence(int nextLevel)
@@ -427,7 +470,7 @@ public class GameManager : MonoBehaviour
 
         // Show level-up UI
         levelUpUI.SetActive(true);
-        
+
         yield return new WaitForSeconds(1f);
 
         levelUpUI.SetActive(false);

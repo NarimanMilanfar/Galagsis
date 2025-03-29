@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 776479614268669889}
   - component: {fileID: 5118322054581840902}
   m_Layer: 0
-  m_Name: Cube 2
+  m_Name: BackWall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2033021037294862223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -39.4}
+  m_LocalPosition: {x: 0, y: 0, z: -45.4}
   m_LocalScale: {x: 239.23778, y: 102.61853, z: 1.171602}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033021037294862223}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 8534703648828695174}
   - component: {fileID: 5344672307678922281}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: PlayerLeftWall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,7 +184,7 @@ Transform:
   m_GameObject: {fileID: 5506490979969184179}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55, y: 5.44, z: -18.36}
+  m_LocalPosition: {x: -88, y: 5.44, z: -18.36}
   m_LocalScale: {x: 1.3359, y: 73.288185, z: 109.5595}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 7058737502059332761}
   - component: {fileID: 9036047552846054638}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: PlayerRIghtWall
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ Transform:
   m_GameObject: {fileID: 8665446541703346731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50, y: 5.44, z: -18.36}
+  m_LocalPosition: {x: 88, y: 5.44, z: -18.36}
   m_LocalScale: {x: 1.3359, y: 73.288185, z: 109.5595}
   m_ConstrainProportionsScale: 0
   m_Children: []

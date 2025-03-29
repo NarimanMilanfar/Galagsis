@@ -248,6 +248,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_text
+      value: 'High Score: 0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_fontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: feb13080ef4b64a6b8486b3be30638b4, type: 2}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5331926505670736474, guid: feb13080ef4b64a6b8486b3be30638b4, type: 2}
+    - target: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 986987735626974671, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -400,6 +432,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6761968861338964064, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761968861338964064, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 469
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766976061424449703, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -651
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775035353057201228, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -651
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584765886133577911, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7757381853037118802, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -439,6 +491,10 @@ PrefabInstance:
     - target: {fileID: 8434445719566997497, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434445719566997497, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 223
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1129,6 +1185,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740585956}
   m_CullTransparentMesh: 1
+--- !u!114 &840977801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 288597728379966431, guid: a8d2cfc4a7001a646b461808955d970e, type: 3}
+  m_PrefabInstance: {fileID: 302346573}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &939252287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1497,7 @@ MonoBehaviour:
   player2: {fileID: 1523317472505394208, guid: 2b6510c9bf7e4a3408e4a4d002992ffb, type: 3}
   playerSpawn: {fileID: 1099425656}
   healthBar: {fileID: 302346576}
+  highScoreText: {fileID: 840977801}
   isGameOver: 0
   restartButton: {fileID: 302346575}
   backToMainMenuButton: {fileID: 302346574}
