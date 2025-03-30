@@ -40,8 +40,8 @@ Assets downloaded from the Unity Asset Store.
 
 
 ### Madelyn DeGruchy's Workload
-- **Game Timer** Added functionality for the game timer
-- **Game Over & Game Won** Created GameOver and GameWon methods and disabled Score and Health depletion once game ends
-- **AudioManager** Created AudioManager and set up methods to play sound effects and background music
-- **Imported Audios** Imported CC0 Background Music, Game Over music, Game Won music, and SFX for the ship engine, buttons clicking on menu screens, shooting bullets, and collisions (enemy hits player, bullet hits player, bullet destroys enemy).
-- **Enemy Glow & Particle Circle** Added emmissive property to all enemy materials so they appear to "glow" or have lights on the wings. Also added a particle effect to create indicators behind where the enemy initially spawns.
+- **Game Timer** Added functionality for the game timer (PR #2)
+- **Game Over & Game Won** Created GameOver and GameWon methods and disabled Score and Health depletion once the game ends to implement different music during each condition. (PR #8)
+- **AudioManager** Created AudioManager and set up methods to play sound effects and background music (PR #8)
+- **Imported Audios** Imported CC0 Background Music, Game Over music, Game Won music, and SFX for the ship engine, buttons clicking on menu screens, shooting bullets, and collisions (enemy hits player, bullet hits player, bullet destroys enemy). (PR #8)
+- **Enemy Glow & Particle Circle** Added emmissive property to all enemy materials so they appear to "glow" or have lights on the wings. Also added was a particle effect to indicate where the enemy initially spawns. (PR #13)
