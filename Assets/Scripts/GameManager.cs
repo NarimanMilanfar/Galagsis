@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
         {
             image6.gameObject.SetActive(true);
             image5.gameObject.SetActive(false);
+            image7.gameObject.SetActive(false);
 
             score = Mathf.Clamp(score, 33, 100);
 
