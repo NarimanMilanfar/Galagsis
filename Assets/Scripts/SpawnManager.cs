@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+
 
 public class SpawnManager : MonoBehaviour
 {
@@ -63,8 +63,8 @@ public class SpawnManager : MonoBehaviour
         {
             return;
         }
-        int randPositionX = (int)Random.Range(spawnRandomRange, -spawnRandomRange);
-        int randPositionX2 =(int) Random.Range(spawnRandomRange, -spawnRandomRange);
+        float randPositionX = Random.Range(spawnRandomRange, -spawnRandomRange);
+        float randPositionX2 = Random.Range(spawnRandomRange, -spawnRandomRange);
 
         float randEnemy = Random.Range(0, 3);
         if (gameManager.GetScore() > 33) { randEnemy += 3; }
@@ -359,9 +359,10 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
-    async Task WaitForSecondsFunction()
+
+    private async UniTask WaitForSecondsFunction()
     {
-        await Task.Delay(1500);
+        await UniTask.Delay(1500);
     }
     private void OnCollisionEnter(Collision collision)
     {
