@@ -35,7 +35,7 @@ https://github.com/user-attachments/assets/71161248-2071-4eed-9a11-1b489e63a245
 
 ### Salma Vikha Ainindita's Workload  
 - **Reset/Restart Functionality:** Added functionality to reset or restart the game after a win or game over, including UI elements and cursor interaction. (PR #1)
-- **Main Menu:** Designed and implemented a main menu with multiple scenes, smooth scene transitions, and navigation back to the main menu after gameplay. (PR #3)
+- **Main Menu:** Designed and implemented a main menu with multiple scenes (Default, Level2, Level3, LevelPage), smooth scene transitions (SceneManager), and navigation back to the main menu after gameplay. (PR #3)
 - **Camera Shake & Level Up Screen:** Improved gameplay feedback with camera shake effects, a level-up screen, and corresponding sound effects. (PR #10)
 - **UI & Visual Enhancements:** Polished the overall user interface by adding a "How to Play" page, pause functionality, improved homepage with animations, updated icons, and custom-designed UI assets using Figma. (PR #16)
 - **Collaboration & Bug Fixes:** Contributed to team development by reviewing PRs, offering feedback, fixing bugs/errors/glitches, and resolving GitHub conflicts.
