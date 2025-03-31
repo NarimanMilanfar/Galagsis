@@ -14,14 +14,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI timerText;
-    public Image image1;
-    public Image image2;
-    public Image image3;
-    public Image image4;    // Game Over Image
-    public Image image5;
-    public Image image6;
-    public Image image7;
-    public Image image8;    //Game Won Image
+    public Image health1;
+    public Image health2;
+    public Image health3;
+    public Image gameOverImage;    // Game Over Image
+    public Image level1;
+    public Image level2;
+    public Image level3;
+    public Image winImage;    //Game Won Image
     public GameObject player1;
     public GameObject player2;
     public Transform playerSpawn;
@@ -128,9 +128,8 @@ public class GameManager : MonoBehaviour
         // Level 2
         if (score > 33 && score <= 66)
         {
-            image6.gameObject.SetActive(true);
-            image5.gameObject.SetActive(false);
-            image7.gameObject.SetActive(false);
+            level2.gameObject.SetActive(true);
+            level1.gameObject.SetActive(false);
 
             score = Mathf.Clamp(score, 33, 100);
 
@@ -227,11 +226,11 @@ public class GameManager : MonoBehaviour
 
         if (health >= 50 && health < 75)
         {
-            image1.gameObject.SetActive(false);
+            health1.gameObject.SetActive(false);
         }
         else if (health >= 25 && health < 50)
         {
-            image2.gameObject.SetActive(false);
+            health2.gameObject.SetActive(false);
         }
         else if (health <= 0)
         {
@@ -325,15 +324,21 @@ public class GameManager : MonoBehaviour
     {
         if (score > 66)
         {
-            image7.gameObject.SetActive(true);
-            image6.gameObject.SetActive(false);
-            image5.gameObject.SetActive(false);
+            level3.gameObject.SetActive(true);
+            level2.gameObject.SetActive(false);
+            level1.gameObject.SetActive(false);
         }
         else if (score <= 33)
         {
-            image5.gameObject.SetActive(true);
-            image6.gameObject.SetActive(false);
-            image7.gameObject.SetActive(false);
+            level1.gameObject.SetActive(true);
+            level2.gameObject.SetActive(false);
+            level3.gameObject.SetActive(false);
+        }
+        else if (score> 33 && score <= 66)
+        {
+            level2.gameObject.SetActive(true);
+            level1.gameObject.SetActive(false);
+            level3.gameObject.SetActive(false);
         }
 
     }
@@ -349,16 +354,16 @@ public class GameManager : MonoBehaviour
     {
         //Moved Salma's code to this method 
         // Avoid overlap status or images
-        if (image8.gameObject.activeSelf)
+        if (winImage.gameObject.activeSelf)
         {
             // do nothing (skip game over cause already win)
             return;
         }
 
-        image3.gameObject.SetActive(false);
+        health3.gameObject.SetActive(false);
 
         // Game Over Image
-        image4.gameObject.SetActive(true);
+        gameOverImage.gameObject.SetActive(true);
 
         // Restart Button
         Cursor.visible = true;  // Show the cursor
@@ -387,14 +392,14 @@ public class GameManager : MonoBehaviour
     public void GameWon()
     {
         // Avoid overlap status or images
-        if (image4.gameObject.activeSelf || isGameOver == true)
+        if (gameOverImage.gameObject.activeSelf || isGameOver == true)
         {
             // do nothing (skip win cause already game over)
             return;
         }
 
         // Win Image
-        image8.gameObject.SetActive(true);
+        winImage.gameObject.SetActive(true);
 
         // Restart Button
         Cursor.visible = true;  // Show the cursor
@@ -410,7 +415,7 @@ public class GameManager : MonoBehaviour
         timerManager.timerOn = false;
         timerText.text = "Game Won";
         timerManager.timeLeft = 0;
-        image8.gameObject.SetActive(true);
+        winImage.gameObject.SetActive(true);
 
         //Added victory audio here
         if (AudioManager.instance != null)
@@ -485,8 +490,8 @@ public class GameManager : MonoBehaviour
             player = Instantiate(player2, playerSpawn.position, playerSpawn.rotation);
             isPlayer1 = false;
 
-            image6.gameObject.SetActive(true);
-            image5.gameObject.SetActive(false);
+            level2.gameObject.SetActive(true);
+            level1.gameObject.SetActive(false);
         }
         else if (nextLevel == 3)
         {
