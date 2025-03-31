@@ -45,3 +45,10 @@ Assets downloaded from the Unity Asset Store.
 - **AudioManager** Created AudioManager and set up methods to play sound effects and background music (PR #8)
 - **Imported Audios** Imported CC0 Background Music, Game Over music, Game Won music, and SFX for the ship engine, buttons clicking on menu screens, shooting bullets, and collisions (enemy hits player, bullet hits player, bullet destroys enemy). (PR #8)
 - **Enemy Glow & Particle Circle** Added emmissive property to all enemy materials so they appear to "glow" or have lights on the wings. Also added was a particle effect to indicate where the enemy initially spawns. (PR #13)
+
+### Lexi Loudiadis's Workload
+- **Game Status UI:** Imported fonts for game status bar, made a health bar, made custom designs with Canva for UI elements such as the levels, multipliers, and 'You Win' image. (PR #5, PR #6, PR #17 + throughout other PRs)
+- **Health Bar Pickups:** Imported health bar object that spawns in the place of an enemy after it has been shot. If it gets picked up, a custom designed '+10' image pops up in its place. (PR #7)
+- **Score Multipliers:** Implemented x2 and x3 score multipliers that are activated after hitting consecutive enemies in a row. Custom designed 'x2' and 'x3' images pop up beside the score in the game status bar when these multipliers are active. (PR #9)
+- **Scoring Systme:** Score lowers when the player misses an enemy and the enemy collides with the obstacle behind the player. (PR #14)
+- **High Score Feature:** Player's high score is locally saved when playing starting from the first level. Takes into account the amount of time left as well as the score (PR #17)
