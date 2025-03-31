@@ -1,7 +1,7 @@
 # Galagsis  
 ## Game Project for UBC Course COSC 416  
 
-
+Full Play Video on YouTube: https://youtu.be/vv7KCFuyR8E
 https://github.com/user-attachments/assets/71161248-2071-4eed-9a11-1b489e63a245
 
 
