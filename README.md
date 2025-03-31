@@ -7,7 +7,8 @@ https://github.com/user-attachments/assets/71161248-2071-4eed-9a11-1b489e63a245
 
 
 ### Assets  
-Assets downloaded from the Unity Asset Store.
+- Assets downloaded from the Unity Asset Store.
+- Other free assets (images, icons, sound effects): freepik, pngtree, Figma, Canva, YouTube 
 
 ### Nariman Milanfar's Workload  
 
@@ -33,11 +34,11 @@ Assets downloaded from the Unity Asset Store.
 - **Game Over & Game Won State:** Implementing conditions to determine when the game is over or won, with appropriate state transitions.
 
 ### Salma Vikha Ainindita's Workload  
-
-- Reset/Restart Functionality (PR #1)
-- Main Menu (PR #3)
-- Camera Shake with level up screen (PR #10)
-- Added some assets, images, and sound effects
+- **Reset/Restart Functionality:** Added functionality to reset or restart the game after a win or game over, including UI elements and cursor interaction. (PR #1)
+- **Main Menu:** Designed and implemented a main menu with multiple scenes, smooth scene transitions, and navigation back to the main menu after gameplay. (PR #3)
+- **Camera Shake & Level Up Screen:** Improved gameplay feedback with camera shake effects, a level-up screen, and corresponding sound effects. (PR #10)
+- **UI & Visual Enhancements:** Polished the overall user interface by adding a "How to Play" page, pause functionality, improved homepage with animations, updated icons, and custom-designed UI assets using Figma. (PR #16)
+- **Collaboration & Bug Fixes:** Contributed to team development by reviewing PRs, offering feedback, fixing bugs/errors/glitches, and resolving GitHub conflicts.
 
 
 ### Madelyn DeGruchy's Workload
