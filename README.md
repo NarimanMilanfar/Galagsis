@@ -54,3 +54,15 @@ https://github.com/user-attachments/assets/71161248-2071-4eed-9a11-1b489e63a245
 - **Score Multipliers:** Implemented x2 and x3 score multipliers that are activated after hitting consecutive enemies in a row. Custom designed 'x2' and 'x3' images pop up beside the score in the game status bar when these multipliers are active. (PR #9)
 - **Scoring Systme:** Score lowers when the player misses an enemy and the enemy collides with the obstacle behind the player. (PR #14)
 - **High Score Feature:** Player's high score is locally saved when playing starting from the first level. Takes into account the amount of time left as well as the score (PR #17)
+
+
+## Others (Bonus): Prototype and Feedback
+
+<img width="559" alt="image" src="https://github.com/user-attachments/assets/6623e683-071a-44d7-b2f5-557c60cc8c69" />
+
+<img width="406" alt="image" src="https://github.com/user-attachments/assets/685e43a2-0132-487f-88ad-fa8e13f1c49b" />
+
+
+<img width="815" alt="image" src="https://github.com/user-attachments/assets/f4986cee-5907-4117-b3db-7e8397b23d44" />
+
+
