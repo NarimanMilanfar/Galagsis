@@ -53,7 +53,7 @@ https://github.com/user-attachments/assets/71161248-2071-4eed-9a11-1b489e63a245
 - **Health Bar Pickups:** Imported health bar object that spawns in the place of an enemy after it has been shot. If it gets picked up, a custom designed '+10' image pops up in its place. (PR #7)
 - **Score Multipliers:** Implemented x2 and x3 score multipliers that are activated after hitting consecutive enemies in a row. Custom designed 'x2' and 'x3' images pop up beside the score in the game status bar when these multipliers are active. (PR #9)
 - **Scoring Systme:** Score lowers when the player misses an enemy and the enemy collides with the obstacle behind the player. (PR #14)
-- **High Score Feature:** Player's high score is locally saved when playing starting from the first level. Takes into account the amount of time left as well as the score (PR #17)
+- **High Score Feature:** Player's high score is locally saved. Takes into account the amount of time left as well as the score (PR #17)
 
 
 ## Others (Bonus): Prototype and Feedback
